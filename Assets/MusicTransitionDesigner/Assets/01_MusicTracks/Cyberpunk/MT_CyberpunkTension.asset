@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9148fc30dc1afd498b1a56200fe1ace, type: 3}
+  m_Name: MT_CyberpunkTension
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.MusicTrack
+  ClipAssetReference:
+    m_AssetGUID: 538db5d71e36b8c46ba128c0a836e6d7
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  TrackName: MX_TENSE_80BPM_44_16Bars_4BarTail
+  VolumeDb: 0
+  Bpm: 80
+  BeatsPerBar: 4
+  BeatValueType: 2
+  AllowSubscriptionToBeatDefinition: 1
+  Markers: []
+  EntryPointMs: 0
+  ExitPointMs: 48000
+  ExitBar: 17
+  ExitBeat: 1
+  ExitMs: 0
+  LeadInBars: 0
+  LeadInBeats: 0
+  LeadInMs: 0
+  TailBars: 4
+  TailBeats: 0
+  TailMs: 0
+  _cachedEntryTime: 0
+  _cachedExitTime: 48
+  _cachedLeadInSecs: 0
+  _cachedTailSecs: 12
+  ClipStartTimeInSeconds: 0
+  ClipEndTimeInSeconds: 60
+  StartBar: 1
+  StartBeat: 1
+  StartMs: 0
+  EndBar: 21
+  EndBeat: 1
+  EndMs: 0
+  LeadInDurationTotalMs: 0
+  TailDurationTotalMs: 12000
+  FadeInBars: 0
+  FadeInBeats: 0
+  FadeInMs: 0
+  FadeInType: 3
+  FadeOutBars: 2
+  FadeOutBeats: 0
+  FadeOutMs: 0
+  FadeOutType: 3
+  FadeInEndTime: 0
+  FadeOutStartTime: 54
+  _fadeDurationsMigrated: 1
+  _assetGuid: 8b727101-8be0-41dc-a0ba-3b228ffc69d7

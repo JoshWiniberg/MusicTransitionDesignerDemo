@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Transition Designer — User Guide</title>
+  <style>
+    :root {
+      --bg: #0e0e11;
+      --bg-surface: #16161b;
+      --bg-raised: #1e1e25;
+      --bg-hover: #252530;
+      --border: #2a2a36;
+      --border-light: #35354a;
+      --text: #d4d4dc;
+      --text-muted: #8888a0;
+      --text-heading: #eeeef4;
+      --accent: #7b8cff;
+      --accent-dim: #5a6ad4;
+      --accent-bg: rgba(123,140,255,0.08);
+      --accent-border: rgba(123,140,255,0.25);
+      --warn: #e8a84c;
+      --warn-bg: rgba(232,168,76,0.08);
+      --warn-border: rgba(232,168,76,0.25);
+      --info: #5cb8d6;
+      --info-bg: rgba(92,184,214,0.08);
+      --info-border: rgba(92,184,214,0.25);
+      --success: #5cd67a;
+      --code-bg: #12121a;
+      --sidebar-w: 280px;
+      --nav-h: 56px;
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top Nav ── */
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(14,14,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+    }
+    .topnav-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+    .topnav-title span { color: var(--accent); }
+    .topnav-subtitle {
+      margin-left: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .topnav-hamburger {
+      display: none;
+      background: none; border: none; color: var(--text);
+      font-size: 22px; cursor: pointer; margin-right: 12px; padding: 4px 8px;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed; top: var(--nav-h); left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 16px 0;
+      z-index: 90;
+      transition: transform 0.3s ease;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .sidebar-section { padding: 8px 16px 4px; font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+
+    .sidebar a {
+      display: block; padding: 5px 16px 5px 24px;
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: none; border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover { color: var(--text); background: var(--bg-hover); }
+    .sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: var(--accent-bg); }
+    .sidebar a.sub { padding-left: 36px; font-size: 12px; }
+
+    /* ── Main Content ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      margin-top: var(--nav-h);
+      max-width: 860px;
+      padding: 40px 48px 120px;
+    }
+
+    h1 { font-size: 32px; font-weight: 800; color: var(--text-heading);
+      letter-spacing: -0.03em; margin-bottom: 8px; }
+    h1 small { font-size: 14px; font-weight: 400; color: var(--text-muted); display: block; margin-top: 4px; }
+
+    h2 {
+      font-size: 22px; font-weight: 700; color: var(--text-heading);
+      margin: 56px 0 16px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.02em;
+    }
+    h3 { font-size: 17px; font-weight: 600; color: var(--text-heading); margin: 32px 0 12px; }
+    h4 { font-size: 15px; font-weight: 600; color: var(--text-heading); margin: 24px 0 8px; }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    li > ul, li > ol { margin-top: 6px; margin-bottom: 0; }
+
+    strong { color: var(--text-heading); font-weight: 600; }
+    code {
+      font-family: var(--font-mono); font-size: 13px;
+      background: var(--code-bg); border: 1px solid var(--border);
+      padding: 1px 6px; border-radius: 4px; color: var(--accent);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    pre {
+      background: var(--code-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px 20px;
+      overflow-x: auto; margin: 0 0 16px;
+      font-family: var(--font-mono); font-size: 13px;
+      line-height: 1.6; color: var(--text);
+    }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
+    .kw { color: #c792ea; }
+    .fn { color: #82aaff; }
+    .str { color: #c3e88d; }
+    .cmt { color: #546e7a; }
+    .typ { color: #ffcb6b; }
+    .num { color: #f78c6c; }
+
+    /* ── Callouts ── */
+    .note, .tip, .warn, .important {
+      border-radius: 8px; padding: 14px 18px;
+      margin: 16px 0; font-size: 14px; line-height: 1.6;
+      border-left: 3px solid;
+    }
+    .note { background: var(--info-bg); border-color: var(--info); }
+    .note::before { content: "Note"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--info); margin-bottom: 4px; }
+    .tip { background: var(--accent-bg); border-color: var(--accent); }
+    .tip::before { content: "Tip"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 4px; }
+    .warn { background: var(--warn-bg); border-color: var(--warn); }
+    .warn::before { content: "Important"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--warn); margin-bottom: 4px; }
+
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    th { text-align: left; padding: 10px 14px; background: var(--bg-raised);
+      border: 1px solid var(--border); color: var(--text-heading); font-weight: 600; font-size: 13px; }
+    td { padding: 10px 14px; border: 1px solid var(--border); vertical-align: top; }
+    tr:hover td { background: var(--bg-hover); }
+
+    /* ── Definition Lists ── */
+    .def-grid { display: grid; grid-template-columns: 200px 1fr; gap: 0; margin: 12px 0 16px;
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-size: 14px; }
+    .def-grid dt { padding: 10px 14px; background: var(--bg-raised); color: var(--text-heading);
+      font-weight: 600; border-bottom: 1px solid var(--border); }
+    .def-grid dd { padding: 10px 14px; border-bottom: 1px solid var(--border); margin: 0; }
+    .def-grid dt:last-of-type, .def-grid dd:last-of-type { border-bottom: none; }
+
+    /* ── Steps ── */
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent); color: var(--bg); font-weight: 700;
+      font-size: 14px; margin-right: 10px; flex-shrink: 0;
+    }
+    .step-heading { display: flex; align-items: center; margin: 32px 0 12px; }
+    .step-heading h3 { margin: 0; }
+
+    .menu-path {
+      font-family: var(--font-mono); font-size: 13px;
+      background: var(--bg-raised); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 4px; color: var(--text); white-space: nowrap;
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    .priority-table td:first-child { text-align: center; font-weight: 600; color: var(--accent); }
+
+    .img-placeholder {
+      background: var(--bg-raised); border: 1px dashed var(--border-light);
+      border-radius: 8px; padding: 32px; text-align: center;
+      color: var(--text-muted); font-size: 13px; margin: 16px 0;
+      font-style: italic;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
+      .topnav-hamburger { display: block; }
+      .main { margin-left: 0; padding: 32px 24px 100px; }
+    }
+
+    /* sidebar overlay for mobile */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 85;
+    }
+    .sidebar-overlay.show { display: block; }
+
+    /* TOC section within content */
+    .toc { columns: 2; column-gap: 32px; margin: 16px 0 24px; }
+    .toc a { display: block; padding: 3px 0; font-size: 14px; color: var(--text-muted); }
+    .toc a:hover { color: var(--accent); text-decoration: none; }
+    @media (max-width: 640px) { .toc { columns: 1; } }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════ TOP NAV ════════════════════════════ -->
+<nav class="topnav">
+  <button class="topnav-hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">&#9776;</button>
+  <div class="topnav-title"><span>MTD</span> Music Transition Designer</div>
+  <div class="topnav-subtitle">User Guide</div>
+</nav>
+
+<!-- ════════════════════════════ SIDEBAR ════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">Getting Started</div>
+    <a href="#import">Import &amp; Setup</a>
+    <a href="#settings">Project Settings</a>
+    <a href="#audio-files">Import Audio Files</a>
+    <a href="#asset-manager">Asset Manager</a>
+
+    <div class="sidebar-section">Assets</div>
+    <a href="#music-tracks">Music Tracks</a>
+    <a href="#state-groups">State Groups</a>
+    <a href="#state-trees">State Trees</a>
+    <a href="#outcome-categories">Outcome Categories</a>
+    <a href="#state-outcomes">State Outcomes</a>
+    <a href="#transition-rules">Transition Rules</a>
+    <a href="#sound-banks">Sound Banks</a>
+
+    <div class="sidebar-section">Auditioning</div>
+    <a href="#preview-window">Preview Window</a>
+
+    <div class="sidebar-section">Runtime</div>
+    <a href="#scene-setup">Scene Setup</a>
+    <a href="#trigger-system">Trigger System</a>
+    <a href="#parameter-controllers">Parameter Controllers</a>
+    <a href="#transition-behaviour">Transition Behaviour</a>
+
+    <div class="sidebar-section">Reference</div>
+    <a href="#api-reference">API Reference</a>
+    <a href="#guid-system">GUID System</a>
+    <a href="#asset-relationships">Asset Relationships</a>
+    <a href="#validation">Editor Validation</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<!-- ════════════════════════════ MAIN ════════════════════════════ -->
+<div class="main">
+
+    <!-- ───────────────────── TITLE ───────────────────── -->
+    <h1>
+        Music Transition Designer
+        <small>A state-driven adaptive music system for Unity</small>
+    </h1>
+    <p>This guide covers everything you need to set up, author, and control adaptive music with Music Transition Designer (MTD), from first import through to runtime scripting.</p>
+
+    <div class="note">MTD requires <strong>Unity 2023.1+</strong> and depends on <strong>Unity Addressables</strong> (<code>com.unity.addressables</code>) for SoundBank loading.</div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         GETTING STARTED
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <h2 id="import">1 &mdash; Import &amp; First-Time Setup</h2>
+
+    <p>Import the MusicTransitionDesigner Unity package. MTD will install to <code>Assets/MusicTransitionDesigner</code> and create default asset folders. Once imported, the <strong>Startup Window</strong> will open automatically.</p>
+
+    <!-- [Screenshot: Startup Window] -->
+
+    <h3>Create Core Data Assets</h3>
+    <p>In the Startup Window, click the button to generate the core data assets. This creates two ScriptableObjects:</p>
+    <ul>
+        <li><strong>MtdProjectSettings</strong> &mdash; defines both runtime and editor behaviour (mixer groups, fade durations, debugging, default asset paths, and more).</li>
+        <li><strong>MtdEditorData</strong> &mdash; editor-only data that stores folder organisation and file ordering for the Asset Manager. Deleting this file will reset the Asset Manager, removing all folders and custom ordering.</li>
+    </ul>
+
+    <div class="tip">Default asset folders can be changed at any time in Settings: <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Settings</span></div>
+
+
+    <!-- ───────────────────── SETTINGS ───────────────────── -->
+    <h2 id="settings">2 &mdash; Configure Project Settings</h2>
+
+    <p>Navigate to <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Settings</span> to configure:</p>
+
+    <!-- [Screenshot: Project Settings window] -->
+
+    <h3>Audio Configuration</h3>
+    <dl class="def-grid">
+        <dt>BGM Mixer Channel</dt>
+        <dd>AudioMixer group for background music playback.</dd>
+        <dt>Stinger Mixer Channel</dt>
+        <dd>AudioMixer group for stinger playback.</dd>
+        <dt>Stinger Pool Size</dt>
+        <dd>How many stinger <code>AudioSource</code> instances are created when you generate a new Audio Source Pool prefab. The default is 8.</dd>
+        <dt>User Latency Offset (ms)</dt>
+        <dd>Global latency compensation for bar/beat callbacks. Internal compensation is already applied; this defaults to 0.</dd>
+    </dl>
+
+    <div class="warn">Voice stealing: if all stinger sources are in use when a new stinger is triggered, the system steals the least-recently-used stinger source so the newest stinger can play.</div>
+
+    <h3>Initialisation</h3>
+    <dl class="def-grid">
+        <dt>Persistent Banks</dt>
+        <dd>SoundBanks loaded automatically when the MusicSystem initialises, remaining loaded for the entire session. These are in addition to scene-specific banks. Persistent banks are protected from external unloading.</dd>
+    </dl>
+
+    <h3>Global Fade Timings</h3>
+    <dl class="def-grid">
+        <dt>Pause Fade Duration (ms)</dt>
+        <dd>Default fade time for pause, resume, and stop operations when <code>-1</code> is passed as the fade parameter via the API or components.</dd>
+    </dl>
+
+    <h3>Debugging</h3>
+    <dl class="def-grid">
+        <dt>Periodic Status Log</dt>
+        <dd>Generates a periodic console log detailing the current system state (enabled/disabled/paused/playing, active track, game states, loaded banks, etc.).</dd>
+        <dt>Log Interval (ms)</dt>
+        <dd>Interval between status logs (default 10000).</dd>
+        <dt>Enable Logging</dt>
+        <dd>Master toggle for all MTD console logging.</dd>
+        <dt>Global Verbosity</dt>
+        <dd>
+            <strong>WarningsOnly</strong> &mdash; only warnings and errors.<br>
+            <strong>Basic</strong> &mdash; standard operational messages.<br>
+            <strong>Detailed</strong> &mdash; verbose debugging output.
+        </dd>
+    </dl>
+
+    <h3>Metronome</h3>
+    <dl class="def-grid">
+        <dt>Beat 1 / Other Beats</dt>
+        <dd>Audio clips used by the in-editor metronome preview. Defaults are provided with the package.</dd>
+    </dl>
+
+    <h3>Default Asset Paths</h3>
+    <p>If folders are moved or renamed, update the paths here manually to ensure the Asset Manager Open/Save explorers default to the correct folder.</p>
+
+
+    <!-- ───────────────────── AUDIO FILES ───────────────────── -->
+    <h2 id="audio-files">3 &mdash; Import Audio Files</h2>
+
+    <p>Import your audio clips to the <code>00_AudioFiles</code> folder (or your configured default). Audio clips used by MTD <strong>must be marked as Addressable</strong> in Unity's Addressables system before they can be assigned to Music Tracks.</p>
+
+    <!-- [Screenshot: Audio clip Inspector with Addressable checkbox] -->
+
+    <div class="warn">Unity's API cannot retrieve high-resolution waveform data unless the referenced audio clip's <strong>Load Type</strong> is set to <strong>Decompress On Load</strong>. Other Load Types will result in a lower-resolution waveform display in the Music Track Editor. It is best to set audio to Decompress On Load first, then change the Load Type after finalising the Music Track asset if necessary.</div>
+
+
+    <!-- ───────────────────── ASSET MANAGER ───────────────────── -->
+    <h2 id="asset-manager">4 &mdash; The Asset Manager</h2>
+
+    <p>Open the Asset Manager via <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Asset Manager</span>.</p>
+
+    <!-- [Screenshot: Asset Manager overview] -->
+
+    <p>The Asset Manager is the centralised hub for creating, organising, editing, and validating every MTD asset type. It provides a tabbed interface with sections for:</p>
+
+    <table>
+        <thead><tr><th>Asset Type</th><th>Purpose</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Music Tracks</strong></td><td>Define a track's metadata (BPM, time signature, markers, entry/exit points).</td></tr>
+            <tr><td><strong>State Groups</strong></td><td>Define game-state categories and their possible values.</td></tr>
+            <tr><td><strong>State Trees</strong></td><td>Map state combinations to State Outcomes.</td></tr>
+            <tr><td><strong>State Outcomes</strong></td><td>Control which Music Track plays and how (start/stop positions, loop behaviour).</td></tr>
+            <tr><td><strong>Outcome Categories</strong></td><td>Tag State Outcomes for use in grouped Transition Rules.</td></tr>
+            <tr><td><strong>Transition Rules</strong></td><td>Define sync, timing, and fade behaviour between State Outcomes.</td></tr>
+            <tr><td><strong>SoundBanks</strong></td><td>Package assets together for runtime loading.</td></tr>
+        </tbody>
+    </table>
+
+    <p>Each section has options to <strong>create</strong>, <strong>move</strong>, and <strong>delete</strong> assets and folders. Nested folders are supported. Folder organisation is purely for the Asset Manager's display and is stored in the MtdEditorData asset.</p>
+
+    <div class="tip">To edit an asset, <strong>double-click it</strong> in the Asset Manager list. It opens in the tab above for editing.</div>
+
+    <div class="note">Some asset types must be <strong>validated and enabled</strong> before they are active: <strong>State Groups</strong>, <strong>Outcome Categories</strong>, <strong>State Outcomes</strong>, and <strong>Transition Rules</strong>. When you finish editing one of these, always press <strong>Validate and Enable</strong> first, then <strong>Save</strong>. If validation fails, fix the reported issues before saving.</div>
+
+    <h3>Recommended Creation Order</h3>
+    <p>Assets build upon each other, so they are best created in this order:</p>
+    <ol>
+        <li>Music Tracks</li>
+        <li>State Groups</li>
+        <li>State Trees (State Outcomes can be created directly from within the State Tree editor)</li>
+        <li>State Outcomes (edit any generated from the State Tree)</li>
+        <li>Transition Rules</li>
+        <li>SoundBanks</li>
+    </ol>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ASSETS
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- ───────────────────── MUSIC TRACKS ───────────────────── -->
+    <h2 id="music-tracks">5 &mdash; Music Tracks</h2>
+
+    <p>A Music Track is a ScriptableObject that wraps an audio clip with musical metadata, providing timing context to the playback system and facilitating synchronised callbacks. From the Asset Manager, <strong>double-click</strong> a Music Track in the list to open the Music Track Editor.</p>
+
+    <!-- [Screenshot: Music Track Editor] -->
+
+    <h3>Track Properties</h3>
+    <dl class="def-grid">
+        <dt>Audio Clip</dt>
+        <dd>An Addressable reference to an AudioClip. The clip must be marked as Addressable.</dd>
+        <dt>Track Name</dt>
+        <dd>Display name used for debugging purposes only.</dd>
+        <dt>Volume (dB)</dt>
+        <dd>Default volume adjustment in dBFS. This is used unless overridden by a State Outcome. Range: &minus;80&nbsp;dB (silent) to 0&nbsp;dB (full volume).</dd>
+        <dt>BPM</dt>
+        <dd>Tempo in beats per minute.</dd>
+        <dt>Beats Per Bar</dt>
+        <dd>Time signature numerator (e.g. 4 for 4/4 time).</dd>
+        <dt>Beat Value</dt>
+        <dd>The note value that represents a beat: Eighth (1/8), Quarter (1/4), Dotted Quarter, or Half (1/2).</dd>
+        <dt>Allow Beat Subscription</dt>
+        <dd>If enabled, this track can provide beat/bar callbacks to API subscribers. Disable for non-rhythmic tracks or tracks with tempo variation.</dd>
+    </dl>
+
+    <h3>Entry &amp; Exit Points</h3>
+    <p>Bar 1, Beat 1 is anchored to the Entry Point. All musical time values are relative to it.</p>
+    <dl class="def-grid">
+        <dt>Entry Point (ms)</dt>
+        <dd>The default start position, in milliseconds from the beginning of the audio file. This is where Bar 1, Beat 1 sits.</dd>
+        <dt>Exit Point</dt>
+        <dd>When the track will stop or loop (depending on State Outcome settings). Specified in Bars/Beats/Ms.</dd>
+        <dt>Lead-In Duration</dt>
+        <dd><em>Optional.</em> A pre-roll section before the Entry Point. If a State Outcome or Transition Rule utilises the lead-in, playback begins earlier so that the Entry Point aligns with the transition Sync Point. Specified in Bars/Beats/Ms.</dd>
+        <dt>Tail Duration</dt>
+        <dd><em>Optional.</em> A section after the Exit Point. If the track reaches its Exit Point, the tail plays. If a State Outcome is set to loop, the tail plays across the loop. Specified in Bars/Beats/Ms.</dd>
+    </dl>
+
+    <p>Timings for Lead-In, Exit Point, Tail, and Markers can be set either:</p>
+    <ul>
+        <li>From the playhead marker on the waveform display, or</li>
+        <li>To the start or end of the audio file, or</li>
+        <li>Manually by inputting the musical time (Bars/Beats/Ms) and pressing <strong>Set</strong>. The Ms field is a fine-tuning offset and can accept negative values.</li>
+    </ul>
+
+    <h3>Track Markers</h3>
+    <p>Markers are named positions on the track timeline that can be referenced by State Outcomes and Transition Rules as Sync Points, Playback Start Positions, Loop To Positions, and Play Until Positions. Each marker has a unique internal GUID for stable referencing.</p>
+
+    <div class="warn">
+        Music Tracks and Track Markers are assigned runtime-accessible GUIDs to provide stable references. <strong>Duplicating</strong> a Music Track asset will cause a GUID conflict. If MTD detects a conflict, it will display a warning and mark the most recent Music Track (and any dependent assets) as invalid. Resolve this by editing the invalid Music Track and pressing <strong>Generate New GUIDs</strong>.<br><br>
+        Deleting a Track Marker will automatically null any references to it by State Outcomes and Transition Rules (but not by components). Likewise, re-ordering markers may break playback logic (e.g. by causing a State Outcome's Playback Start Position to be later than its Play Until position). In both cases, dependent assets will be marked invalid until the issue is fixed.
+    </div>
+
+    <h3>Preview Settings</h3>
+    <p>Set start, stop, and loop behaviour for the Music Track's playback preview. These settings are editor-only and are not used at runtime.</p>
+
+    <h3>Waveform Display</h3>
+    <!-- [Screenshot: Waveform with handles and markers] -->
+    <ul>
+        <li><strong>Draw fades</strong> by dragging the white handles. Right-click to select the fade shape (Linear, Logarithmic, Exponential, S-Curve, Square Root).</li>
+        <li>The <strong>Playhead</strong> and <strong>Track Markers</strong> can be dragged and will snap to the grid. Hold <kbd>Shift</kbd> to fine-tune the drag.</li>
+        <li><strong>Click</strong> anywhere on the waveform to position the playhead. <strong>Double-click</strong> the playhead for quick playback from that point.</li>
+    </ul>
+
+    <div class="note">Unity's API cannot retrieve high-resolution waveform data unless the audio clip's Load Type is set to <strong>Decompress On Load</strong>. Other Load Types produce a lower-resolution display. Set Decompress On Load while authoring, then change the Load Type after finalising if necessary.</div>
+
+
+    <!-- ───────────────────── STATE GROUPS ───────────────────── -->
+    <h2 id="state-groups">6 &mdash; State Groups</h2>
+
+    <p>MTD uses state evaluation to trigger music automatically at runtime. A <strong>State Group</strong> represents a game-state category (e.g. "Location", "CombatStatus") and contains a list of possible <strong>State</strong> values (e.g. "Area1", "Area2", "InCombat", "OutOfCombat"). Open a State Group from the Asset Manager by <strong>double-clicking</strong> it in the list.</p>
+
+    <!-- [Screenshot: State Group Editor] -->
+
+    <h3>Properties</h3>
+    <dl class="def-grid">
+        <dt>Group Name</dt>
+        <dd>A mandatory, unique identifier for this State Group.</dd>
+        <dt>States</dt>
+        <dd>A list of named state values. Each state has a unique internal GUID.</dd>
+        <dt>Is Enabled</dt>
+        <dd>Whether the State Group is active and can be registered.</dd>
+    </dl>
+
+    <h3>Identification</h3>
+    <p>State Groups can be referenced in three ways:</p>
+    <ol>
+        <li><strong>Direct asset reference</strong> (most robust).</li>
+        <li><strong>By Group Name</strong> (string; less stable if renamed).</li>
+        <li><strong>By Asset GUID</strong> (stable; survives renaming).</li>
+    </ol>
+    <p>Individual states within a group can be referenced by <strong>State Name</strong> or <strong>State GUID</strong>. The API accepts any combination of these identifiers. Press <strong>Copy ID</strong> to copy a State's GUID to the clipboard.</p>
+
+    <h3>Validation</h3>
+    <ul>
+        <li>Group Names must be unique across all State Groups in the project.</li>
+        <li>State names must be unique within an individual State Group.</li>
+        <li>At least one state must be defined.</li>
+    </ul>
+
+    <p>When finished, always press <strong>Validate and Enable</strong> first, then <strong>Save</strong>. If there are any issues, the asset will not validate until they are resolved.</p>
+
+    <div class="warn">Duplicating a State Group asset will cause a GUID conflict. If MTD detects a conflict, it will display a warning and mark the most recent State Group (and any dependent assets) as invalid. Resolve by pressing <strong>Generate New GUIDs</strong>.</div>
+
+
+    <!-- ───────────────────── STATE TREES ───────────────────── -->
+    <h2 id="state-trees">7 &mdash; State Trees</h2>
+
+    <p>A State Tree maps combinations of game states (from State Groups) to State Outcomes. When conditions are met for a branch, that branch's State Outcome triggers, telling the playback system which Music Track to play and how. Open a State Tree from the Asset Manager by <strong>double-clicking</strong> it in the list.</p>
+
+    <!-- [Screenshot: State Tree Editor with paths and columns] -->
+
+    <h3>Building a State Tree</h3>
+    <ol>
+        <li><strong>Add State Groups</strong> to the State Hierarchy. These form the columns of the decision matrix.</li>
+        <li>Press <strong>New Path</strong> to create a condition branch.</li>
+        <li>
+            Press the foldout arrow to reveal the branch's state columns, then select which state combinations must be met for the branch to evaluate as true.
+            <ul>
+                <li>States <strong>within</strong> a column are evaluated as <strong>OR</strong> (any can be true).</li>
+                <li>Multiple columns are evaluated as <strong>AND</strong> (all must be true).</li>
+            </ul>
+        </li>
+        <li><strong>Create or select</strong> the State Outcome that will play if the branch's conditions are met. Leave the State Outcome field null for silence.</li>
+    </ol>
+
+    <h3>Evaluation &amp; Shadowing</h3>
+    <p>Evaluation takes place <strong>top to bottom</strong>. The first matching entry wins. If any branch shadows (makes it impossible to reach) a lower branch due to duplicate conditions, the shadowed branch will display a warning icon.</p>
+    <ul>
+        <li>Press the <strong>Check Shadowing</strong> button to display only shadowed paths.</li>
+        <li>Hover over the warning icon to see information (limited to one issue at a time).</li>
+    </ul>
+    <p>The editor detects three types of issues:</p>
+    <ul>
+        <li><strong>Shadowed</strong> &mdash; entries completely covered by a higher-priority entry.</li>
+        <li><strong>Partially blocked</strong> &mdash; entries with some unreachable routes.</li>
+        <li><strong>Duplicates</strong> &mdash; entries with identical logic to another entry.</li>
+    </ul>
+
+    <h3>Folders</h3>
+    <p>Entries can be organised into folders within the State Tree editor for readability. Folder structure does not affect evaluation order; only the flattened priority order matters.</p>
+
+    <h3>Runtime</h3>
+    <p>Only <strong>one State Tree</strong> may be active at any one time. Switching trees at runtime will trigger a State Evaluation.</p>
+
+    <div class="warn">Duplicating a State Tree asset will cause a GUID conflict. Resolve by pressing <strong>Generate New GUIDs</strong> on the invalid asset.</div>
+
+
+    <!-- ───────────────────── OUTCOME CATEGORIES ───────────────────── -->
+    <h2 id="outcome-categories">8 &mdash; Outcome Categories</h2>
+
+    <p>Transition Rules define how one track transitions to another. Transitions can target specific State Outcomes, entire Outcome Categories, Any, or None. While State Outcomes are highly specific and Any serves as a wildcard, <strong>Outcome Categories</strong> provide a middle ground.</p>
+
+    <p>Rather than creating multiple Transition Rules with identical transition behaviour, you can assign <strong>Outcome Category tags</strong> to State Outcomes that share identical transition requirements, then create Transition Rules for the entire category.</p>
+
+    <h4>Example</h4>
+    <p>If you want all Exploration tracks to transition into all Combat tracks in the same way, instead of creating a separate Transition Rule for every State Outcome pair, you could create a single <strong>Exploration &rarr; Combat</strong> rule. If time signature is a relevant factor, you could create categories like <code>Exploration4-4</code> and <code>Combat3-4</code>.</p>
+
+    <p>Outcome Category assets serve purely as <strong>tags</strong>. The asset itself is the identifier and holds no properties beyond <strong>Is Enabled</strong>.</p>
+
+    <div class="tip">If a Transition Rule targeting a specific State Outcome exists, it will always take priority over a Transition Rule targeting a Category. Categories therefore work well as <strong>default fallbacks</strong> for common transitions. See the <a href="#transition-rule-priority">Transition Rule Priority</a> table for the full evaluation order.</div>
+
+    <p>Create Outcome Categories in the <strong>State Outcomes</strong> tab of the Asset Manager.</p>
+
+    <p>When finished editing an Outcome Category, press <strong>Validate and Enable</strong>, then <strong>Save</strong>.</p>
+
+
+    <!-- ───────────────────── STATE OUTCOMES ───────────────────── -->
+    <h2 id="state-outcomes">9 &mdash; State Outcomes</h2>
+
+    <p>A State Tree tells the playback system which State Outcome should trigger when a branch's conditions are met. A <strong>State Outcome</strong> tells the playback system which Music Track to play and how. Open a State Outcome from the Asset Manager by <strong>double-clicking</strong> it in the list.</p>
+
+    <!-- [Screenshot: State Outcome Editor] -->
+
+    <h3>Properties</h3>
+    <dl class="def-grid">
+        <dt>Music Track</dt>
+        <dd>The Music Track to play when this outcome is triggered.</dd>
+        <dt>Category</dt>
+        <dd><em>Optional.</em> Assign this State Outcome to an Outcome Category for use in grouped Transition Rules.</dd>
+        <dt>Is Enabled</dt>
+        <dd>Whether this outcome is active.</dd>
+    </dl>
+
+    <h3>Playback Settings</h3>
+    <dl class="def-grid">
+        <dt>Play From</dt>
+        <dd>
+            <strong>Entry Point</strong> &mdash; the track's default entry position.<br>
+            <strong>Marker</strong> &mdash; a specific named marker.<br>
+            <strong>Random Marker</strong> &mdash; a randomly chosen marker from a selection.
+        </dd>
+        <dt>Play Lead-In</dt>
+        <dd>Whether to include the track's lead-in section.</dd>
+        <dt>Play Until</dt>
+        <dd>
+            <strong>Exit Point</strong> &mdash; the track's defined exit position.<br>
+            <strong>Marker</strong> &mdash; a specific named marker.
+        </dd>
+        <dt>Loop</dt>
+        <dd>Whether to repeat when reaching the Play Until position.</dd>
+        <dt>Loop To</dt>
+        <dd>
+            <strong>Entry Point</strong> &mdash; the track's entry.<br>
+            <strong>Marker</strong> &mdash; a specific marker.
+        </dd>
+        <dt>Play Tail On Exit</dt>
+        <dd>Whether to play the tail section when reaching the exit point, either during looping or when finishing.</dd>
+    </dl>
+
+    <h3>Volume Override</h3>
+    <dl class="def-grid">
+        <dt>Use Volume Override</dt>
+        <dd>If enabled, overrides the Music Track's default volume.</dd>
+        <dt>Volume Override (dB)</dt>
+        <dd>The override volume level.</dd>
+    </dl>
+
+    <h3>Validation</h3>
+    <p>State Outcomes require a Music Track reference and a coherent playback timeline to validate: the Play Until position must be later than the Play From and Loop To positions. Ineligible markers are hidden from the menu.</p>
+
+    <p>When finished, always press <strong>Validate and Enable</strong> first, then <strong>Save</strong>.</p>
+
+
+    <!-- ───────────────────── TRANSITION RULES ───────────────────── -->
+    <h2 id="transition-rules">10 &mdash; Transition Rules</h2>
+
+    <p>Transition Rules define how one Music Track should transition to another when a new State Outcome is triggered. They control synchronisation, timing, fade behaviour, and optional overlays. Open a Transition Rule from the Asset Manager by <strong>double-clicking</strong> it in the list.</p>
+
+    <!-- [Screenshot: Transition Rule Editor] -->
+
+    <h3>Rule Definition</h3>
+    <p>Each rule defines a transition path between <strong>Track A</strong> (source/outgoing) and <strong>Track B</strong> (destination/incoming):</p>
+
+    <dl class="def-grid">
+        <dt>Direction</dt>
+        <dd><strong>One Way</strong> (A&rarr;B) or <strong>Bidirectional</strong> (A&harr;B). Bidirectional rules are two-in-one: the same transition behaviour applies in both directions.</dd>
+        <dt>Track A/B Type</dt>
+        <dd>
+            How to match the source/destination:<br>
+            <strong>StateOutcome</strong> &mdash; a specific State Outcome.<br>
+            <strong>OutcomeCategory</strong> &mdash; any outcome in a given category.<br>
+            <strong>Any</strong> &mdash; matches any outcome (wildcard).<br>
+            <strong>None</strong> &mdash; matches when no music is playing.
+        </dd>
+    </dl>
+
+    <h3>Sync Point</h3>
+    <p>The Sync Point is the point in time at which the incoming track will begin playing (before accounting for Lead-In or Fade/Positional offsets).</p>
+
+    <table>
+        <thead><tr><th>Sync Type</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Immediate</strong></td><td>Fires instantly.</td></tr>
+            <tr><td><strong>On Next Beat</strong></td><td>Waits for the next beat boundary.</td></tr>
+            <tr><td><strong>On Beats Of Bar</strong></td><td>Waits for specific beat(s) within the bar (e.g. beats 1 and 3). Wraps to the next bar if all specified beats have passed.</td></tr>
+            <tr><td><strong>On Next Bar</strong></td><td>Waits for the next bar boundary.</td></tr>
+            <tr><td><strong>On Marker</strong></td><td>Waits for a specific marker on Track A.</td></tr>
+            <tr><td><strong>On State Outcome End</strong></td><td>Waits for the current outcome to reach its Play Until position.</td></tr>
+            <tr><td><strong>After X Full Bars</strong></td><td>Counts X full bars from the start of the next bar. For example, triggering on Bar 2 Beat 2 with "After 2 Bars" results in a transition on Bar 5.</td></tr>
+            <tr><td><strong>After X Full Beats</strong></td><td>Counts X full beats from the start of the next beat.</td></tr>
+            <tr><td><strong>After X Ms</strong></td><td>Waits X milliseconds.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="note">Marker options are not available if the outgoing track is unknown to the Transition Rule (e.g. because the rule is Bidirectional, or Track A's type is Category or Any).</div>
+
+    <h3>Playback Start Position</h3>
+    <p>Controls where the incoming track begins playing:</p>
+
+    <table>
+        <thead><tr><th>Option</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Get From State Outcome</strong></td><td>Uses the incoming State Outcome's default Play From setting (which may be a Track Marker).</td></tr>
+            <tr><td><strong>From Entry Point</strong></td><td>The track's entry position.</td></tr>
+            <tr><td><strong>From Marker</strong></td><td>A specific marker on Track B (one-way rules only).</td></tr>
+            <tr><td><strong>From Random Marker</strong></td><td>A randomly chosen marker on Track B (one-way rules only).</td></tr>
+            <tr><td><strong>Sync Real Time</strong></td><td>Plays the incoming track from the outgoing track's current position in real time (ms from Entry Point).</td></tr>
+            <tr><td><strong>Sync Musical Time</strong></td><td>Plays the incoming track from the outgoing track's current musical time (bar, beat, ms). Useful for transitioning between tracks with different BPMs; inconsistent time signatures may cause issues.</td></tr>
+        </tbody>
+    </table>
+
+    <dl class="def-grid">
+        <dt>Use Last Played Position</dt>
+        <dd>If checked, and the State Outcome has been played before, playback resumes from where it left off. Otherwise it starts from the Playback Start Position.</dd>
+        <dt>Minimum Play Duration</dt>
+        <dd><em>Optional.</em> Prevents any other transitions from firing until the cooldown period is over. Requested transitions will be queued until then.</dd>
+    </dl>
+
+    <h3>Transition Reversal</h3>
+    <p>A Transition Reversal can occur when a transition back to the outgoing track is requested during an active transition to the incoming track (e.g. Track A is requested while already transitioning from A to B). If permitted, the system reverses the crossfade back to the outgoing track.</p>
+    <dl class="def-grid">
+        <dt>Allow Transition Reversal</dt>
+        <dd>Enable or disable reversal for this rule.</dd>
+        <dt>Reversal Phase Flags</dt>
+        <dd>Control which transition phases allow reversal: During Fade Out, During Silence, During Fade In, During Overlay.</dd>
+        <dt>Reversal Fade</dt>
+        <dd>Fade type and duration for the reverse transition.</dd>
+    </dl>
+
+    <h3>Track Behaviour (Fades &amp; Offsets)</h3>
+    <p>Use the popups to specify fade and position settings for the outgoing track, incoming track, and overlay.</p>
+
+    <dl class="def-grid">
+        <dt>Fade Settings</dt>
+        <dd>Duration, offset, and curve for fading out Track A and fading in Track B. Types: Linear, Logarithmic, Exponential, S-Curve, Square Root.</dd>
+        <dt>Timing Base</dt>
+        <dd>Specifies which track's time signature and BPM are used to calculate bar/beat lengths. Defaults to the outgoing track for positional offsets, and to itself for fade durations. Useful for fine-tuning alignment between tracks with different BPMs.</dd>
+        <dt>Positional Offsets</dt>
+        <dd>Move the scheduled start time of the track <strong>without</strong> adjusting the Playback Start Position (i.e. the Playback Start Position becomes unaligned with the Sync Point).</dd>
+        <dt>Fade Offsets</dt>
+        <dd>Move the scheduled start time and <strong>adjust the Playback Start Position to compensate</strong>, maintaining alignment with the Sync Point.</dd>
+    </dl>
+
+    <h3>Overlay</h3>
+    <p>An Overlay is an optional additional Music Track that plays across a transition, serving as a stinger or bridge between the outgoing and incoming tracks.</p>
+
+    <dl class="def-grid">
+        <dt>Overlay Track</dt>
+        <dd>The Music Track to overlay.</dd>
+        <dt>Play Lead-In / Tail</dt>
+        <dd>Whether to include the overlay's lead-in and tail sections.</dd>
+        <dt>Overlay Cooldown (ms)</dt>
+        <dd>Time restriction on how soon the overlay can fire again.</dd>
+        <dt>Volume Override</dt>
+        <dd>Override the overlay track's default volume.</dd>
+        <dt>Position Offset</dt>
+        <dd>Offset the overlay's start position.</dd>
+        <dt>Fade In / Fade Out</dt>
+        <dd>Independent fade settings for the overlay.</dd>
+        <dt>Align to Overlay Exit</dt>
+        <dd>For the incoming track: applies an automatic position offset, aligning the Playback Start Position to the overlay's Exit Position.</dd>
+    </dl>
+
+    <h3 id="transition-rule-priority">Transition Rule Priority</h3>
+    <p>When a transition is needed, the system searches for the best matching rule. The destination is prioritised over the source: a rule with a specific destination is preferred over one with "Any", even if the source match is less specific.</p>
+
+    <table class="priority-table">
+        <thead><tr><th>Priority</th><th>Current</th><th>Incoming</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>StateOutcome</td><td>StateOutcome</td></tr>
+            <tr><td>2</td><td>OutcomeCategory</td><td>StateOutcome</td></tr>
+            <tr><td>3</td><td>Any</td><td>StateOutcome</td></tr>
+            <tr><td>4</td><td>None</td><td>StateOutcome</td></tr>
+            <tr><td>5</td><td>StateOutcome</td><td>OutcomeCategory</td></tr>
+            <tr><td>6</td><td>OutcomeCategory</td><td>OutcomeCategory</td></tr>
+            <tr><td>7</td><td>Any</td><td>OutcomeCategory</td></tr>
+            <tr><td>8</td><td>None</td><td>OutcomeCategory</td></tr>
+            <tr><td>9</td><td>StateOutcome</td><td>Any</td></tr>
+            <tr><td>10</td><td>OutcomeCategory</td><td>Any</td></tr>
+            <tr><td>11</td><td>Any</td><td>Any</td></tr>
+            <tr><td>12</td><td>None</td><td>Any</td></tr>
+            <tr><td>13</td><td>StateOutcome</td><td>None</td></tr>
+            <tr><td>14</td><td>OutcomeCategory</td><td>None</td></tr>
+            <tr><td>15</td><td>Any</td><td>None</td></tr>
+        </tbody>
+    </table>
+
+    <p>If no matching rule is found, an automatic <strong>Fallback</strong> rule is used which performs an immediate crossfade with near-zero fade duration.</p>
+
+    <p>When finished editing a Transition Rule, press <strong>Validate and Enable</strong>, then <strong>Save</strong>. If validation fails, fix the reported issues and try again.</p>
+
+
+    <!-- ───────────────────── SOUND BANKS ───────────────────── -->
+    <h2 id="sound-banks">11 &mdash; Sound Banks</h2>
+
+    <p>Sound Banks package all runtime assets (tracks, outcomes, rules) for loading and unloading as a group. Audio clips are loaded via Unity Addressables when a bank is loaded, and released when unloaded. Open a Sound Bank from the Asset Manager by <strong>double-clicking</strong> it in the list.</p>
+
+    <!-- [Screenshot: Sound Bank Editor] -->
+
+    <h3>Authoring</h3>
+    <dl class="def-grid">
+        <dt>Source State Trees</dt>
+        <dd>The primary content source. Adding a State Tree automatically includes all its referenced State Outcomes and Music Tracks.</dd>
+        <dt>Source Music Tracks</dt>
+        <dd>Manually added tracks not referenced by State Trees (e.g. stingers).</dd>
+        <dt>Source Transition Rules</dt>
+        <dd>Manually added Transition Rules for cases not covered by auto-compilation (e.g. transitions between tracks in different Sound Banks).</dd>
+    </dl>
+
+    <h3>Rule Compilation Mode</h3>
+    <dl class="def-grid">
+        <dt>Strict (recommended)</dt>
+        <dd>Only includes Transition Rules where <strong>both</strong> Track A and Track B are present in this Sound Bank.</dd>
+        <dt>Loose (not recommended)</dt>
+        <dd>Includes rules where <strong>either</strong> Track A or Track B is present. This can include unnecessary rules and is less efficient.</dd>
+    </dl>
+
+    <div class="tip">For transitions between tracks in different Sound Banks, manually add the relevant Transition Rules via the Source Transition Rules list. This is much more efficient than using Loose mode.</div>
+
+    <h3>Compiled Data</h3>
+    <p>The editor compiles the final runtime lists:</p>
+    <ul>
+        <li><strong>Compiled Tracks</strong> &mdash; all Music Tracks needed at runtime.</li>
+        <li><strong>Compiled State Outcomes</strong> &mdash; all State Outcomes.</li>
+        <li><strong>Compiled Transition Rules</strong> &mdash; all applicable rules.</li>
+    </ul>
+
+    <h3>Runtime Behaviour</h3>
+    <ul>
+        <li>Multiple Sound Banks can be loaded simultaneously.</li>
+        <li>If a Music Track appears in multiple loaded banks, the audio clip is loaded only once. A reference counter ensures the clip remains in memory until all banks containing it are unloaded.</li>
+        <li>Loading a bank registers its outcomes and rules with the runtime asset registry.</li>
+        <li>Unloading a bank removes its registrations and releases audio clips.</li>
+    </ul>
+
+    <h3>Validation</h3>
+    <ul>
+        <li>All source assets must be valid and enabled.</li>
+        <li>If compilation skipped any invalid/disabled assets, the bank is marked "Incomplete".</li>
+    </ul>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+     AUDTIONING
+     ═══════════════════════════════════════════════════════════════ -->
+    <!-- ───────────────────── PREVIEW WINDOW ───────────────────── -->
+    <h2 id="preview-window">12 &mdash; Preview Window</h2>
+
+    <p>The <strong>Preview Window</strong> lets you test your assets and transition behaviour entirely inside the editor.</p>
+
+    <!-- [Screenshot: Preview Window] -->
+
+    <h3>Open the window</h3>
+    <p>Go to <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Preview Window</span>.</p>
+
+    <h3>Workflow</h3>
+    <ol>
+        <li>Add the <strong>SoundBanks</strong> you want to test. Loading them prepares all referenced assets for preview.</li>
+        <li>Set the <strong>active State Tree</strong> and choose the starting <strong>states</strong>.</li>
+        <li>Press <strong>Play</strong> to start preview playback.</li>
+        <li>Change states/trees and click <strong>Transition Now</strong> to audition the transition immediately.</li>
+        <li>Use <strong>Save Session</strong> / <strong>Load Session</strong> to store and reopen preview setups.</li>
+    </ol>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         RUNTIME
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- ───────────────────── SCENE SETUP ───────────────────── -->
+    <h2 id="scene-setup">13 &mdash; Scene Setup</h2>
+
+    <p>Add the <strong>MtdSceneInitialiser</strong> prefab in every scene that uses music. This component is responsible for:</p>
+
+    <ol>
+        <li>Creating the persistent <strong>MusicSystem</strong> singleton (if one doesn't already exist).</li>
+        <li>Loading scene-specific Sound Banks.</li>
+        <li>Setting the initial State Tree.</li>
+        <li>Setting initial state values.</li>
+        <li>Optionally starting music playback automatically.</li>
+    </ol>
+
+    <!-- [Screenshot: MtdSceneInitialiser Inspector] -->
+
+    <p>The MtdSceneInitialiser has an early execution order (&minus;40) to ensure the music system is ready before other components try to use it.</p>
+
+    <h3>Properties</h3>
+    <dl class="def-grid">
+        <dt>Persistent Scene Banks</dt>
+        <dd>Sound Banks for this scene. Loaded on <code>Start</code>, unloaded automatically when the scene is destroyed. Protected from external unloading via the API or MtdSoundBankControl.</dd>
+        <dt>Initial State Tree</dt>
+        <dd>The State Tree to activate for this scene.</dd>
+        <dt>Initial States</dt>
+        <dd>A list of StateGroup + State pairs to set immediately on scene start.</dd>
+        <dt>Playback</dt>
+        <dd>Automatic playback behaviour on scene start.</dd>
+    </dl>
+
+    <div class="note">The Project Settings asset is auto-populated on the MtdSceneInitialiser; you do not need to assign it manually.</div>
+
+    <h3>Audio Source Pool Prefab</h3>
+    <p><strong>MtdSceneInitialiser</strong> requires a reference to an <strong>Audio Source Pool prefab</strong>.</p>
+    <ul>
+        <li>This prefab contains the <code>MusicChannels</code>, <code>OverlayAudioSources</code>, and <code>StingerAudioSources</code> objects. Runtime pools/channels are built from this prefab.</li>
+        <li>The package ships with a default pool prefab that provides <strong>8</strong> stinger channels.</li>
+    </ul>
+
+    <div class="warn">Only the prefab referenced by the <strong>first</strong> scene that creates the <strong>MusicSystem</strong> is used. If another scene initialiser points at a different Audio Source Pool prefab, it will not replace the one already built.</div>
+
+    <h4>Changing stinger channel count when creating new prefabs</h4>
+    <p>To generate a pool prefab with a different number of stinger channels:</p>
+    <ol>
+        <li>Open <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Settings</span> and change <strong>Stinger Pool Size</strong>.</li>
+        <li>Create a new pool prefab via <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Create Audio Source Pool Prefab</span>.</li>
+        <li>Assign the newly created prefab to the <strong>Audio Source Pool Prefab</strong> field on the <strong>first</strong> <code>MtdSceneInitialiser</code> that initialises music.</li>
+    </ol>
+
+
+
+    <!-- ───────────────────── TRIGGER SYSTEM ───────────────────── -->
+    <h2 id="trigger-system">14 &mdash; Trigger System</h2>
+
+    <p>The trigger system provides a <strong>code-free</strong> way to control music from the scene. It uses two types of components that work together: <strong>Triggers</strong> (event sources) and <strong>Actions</strong> (what happens when a trigger fires).</p>
+
+    <h3>Triggers (Event Sources)</h3>
+    <p>Triggers fire when a specific Unity event occurs. Each trigger holds a list of Actions to execute.</p>
+
+    <table>
+        <thead><tr><th>Component</th></tr></thead>
+        <tbody>
+            <tr><td><code>MtdOnStart</code></td></tr>
+            <tr><td><code>MtdOnEnable</code></td></tr>
+            <tr><td><code>MtdOnDisable</code></td></tr>
+            <tr><td><code>MtdOnDestroy</code></td></tr>
+            <tr><td><code>MtdOnTriggerEnter</code></td></tr>
+            <tr><td><code>MtdOnTriggerExit</code></td></tr>
+            <tr><td><code>MtdOnTriggerStay</code></td></tr>
+            <tr><td><code>MtdOnCollisionEnter</code></td></tr>
+            <tr><td><code>MtdOnCollisionExit</code></td></tr>
+            <tr><td><code>MtdOnBecameVisible</code></td></tr>
+            <tr><td><code>MtdOnBecameInvisible</code></td></tr>
+        </tbody>
+    </table>
+
+    <p>Collision and trigger-based triggers support a <strong>Required Tags</strong> filter. If tags are specified, the trigger only fires if the colliding object matches one of the listed tags.</p>
+
+    <dl class="def-grid">
+        <dt>Use Cooldown</dt>
+        <dd>Prevents rapid re-triggering.</dd>
+        <dt>Cooldown Duration (ms)</dt>
+        <dd>Minimum time between fires.</dd>
+    </dl>
+
+    <h3>Actions</h3>
+    <p>Actions define what happens when a trigger fires. Add Action components to the same GameObject, then drag them into the trigger's action list. Multiple actions can be added to a single trigger.</p>
+
+    <h4>MtdMusicControl</h4>
+    <p>Controls the overall music system:</p>
+    <ul>
+        <li><strong>Start</strong> &mdash; starts music and evaluates state.</li>
+        <li><strong>Resume</strong> &mdash; resumes from a paused state with an optional fade.</li>
+        <li><strong>Stop</strong> &mdash; stops music with an optional fade.</li>
+        <li><strong>Pause</strong> &mdash; pauses playback, preserving position, with an optional fade.</li>
+    </ul>
+    <p>Fade Duration (ms): pass <code>-1</code> to use the Project Settings default fade time.</p>
+
+    <h4>MtdStateControl</h4>
+    <p>Manipulates the state system:</p>
+    <ul>
+        <li><strong>SetState</strong> &mdash; set a state value on a State Group.</li>
+        <li><strong>SetStateTree</strong> &mdash; replace the active State Tree.</li>
+        <li><strong>ClearState</strong> &mdash; reset a State Group to "None".</li>
+        <li><strong>ClearAllStates</strong> &mdash; reset all State Groups.</li>
+        <li><strong>LockState / UnlockState</strong> &mdash; prevent or allow changes to a State Group.</li>
+        <li><strong>LockAllStates / UnlockAllStates</strong> &mdash; lock or unlock all State Groups.</li>
+    </ul>
+
+    <h4>MtdSoundBankControl</h4>
+    <p>Load or unload Sound Banks at runtime:</p>
+    <ul>
+        <li><strong>Load</strong> &mdash; load a Sound Bank.</li>
+        <li><strong>Unload</strong> &mdash; unload a Sound Bank.</li>
+    </ul>
+
+    <h4>MtdStingerControl</h4>
+    <p>Play one-shot musical stingers:</p>
+    <ul>
+        <li><strong>PlayStinger</strong> &mdash; plays a stinger track.</li>
+        <li><strong>StopAllStingers</strong> &mdash; stops all playing stingers with a fade.</li>
+    </ul>
+    <dl class="def-grid">
+        <dt>Stinger Track</dt>
+        <dd>The Music Track to play.</dd>
+        <dt>Volume (dB)</dt>
+        <dd>Stinger volume.</dd>
+        <dt>Fade Duration</dt>
+        <dd>Fade-out duration for StopAll (seconds).</dd>
+        <dt>Re-Fire Behaviour</dt>
+        <dd>
+            <strong>Parallel</strong> &mdash; multiple instances can play simultaneously.<br>
+            <strong>PreventRefire</strong> &mdash; skips if the same stinger is already playing.<br>
+            <strong>Interrupt</strong> &mdash; stops the existing instance and plays a new one.
+        </dd>
+    </dl>
+
+    <h4>MtdStopSetStart</h4>
+    <p>Fades out and stops playback, executes the list of trigger actions, then starts music again. This allows high-priority actions to be triggered immediately without waiting for an active transition to complete. Use in conjunction with a high-priority State Group to immediately play important tracks without delay. Assign Trigger Action components to its action list.</p>
+
+    <h3>Typical Setup</h3>
+    <ol>
+        <li>Add a Trigger component (e.g. <code>MtdOnTriggerEnter</code>) to a GameObject.</li>
+        <li>Add one or more Action components (e.g. <code>MtdStateControl</code>) to the same GameObject.</li>
+        <li>Drag Action components into the Trigger's action list.</li>
+    </ol>
+
+
+    <!-- ───────────────────── PARAMETER CONTROLLERS ───────────────────── -->
+    <h2 id="parameter-controllers">15 &mdash; Parameter Controllers</h2>
+
+    <h3>MtdMixerParameterController</h3>
+    <p>Controls an exposed AudioMixer parameter (e.g. volume, effects sends) via the MTD system. Supports smooth fading with configurable duration and curve.</p>
+
+    <dl class="def-grid">
+        <dt>Mixer</dt>
+        <dd>The AudioMixer asset.</dd>
+        <dt>Parameter Name</dt>
+        <dd>The exposed parameter name (case-sensitive).</dd>
+        <dt>Use Decibel Values</dt>
+        <dd>If checked, interprets the target value as dB.</dd>
+        <dt>Target Value</dt>
+        <dd>The value to set or fade to.</dd>
+        <dt>Duration</dt>
+        <dd>Fade duration in seconds.</dd>
+        <dt>Fade Curve</dt>
+        <dd>The curve shape.</dd>
+    </dl>
+
+    <p>Can be triggered from code via: <code>Trigger()</code>, <code>SetTargetValue(float)</code>, or <code>TriggerWithValue(float)</code>.</p>
+
+    <h3>MtdProximityController</h3>
+    <p>Drives an MtdMixerParameterController based on distance to a target object. Useful for proximity-based audio effects like ducking, filtering, or volume changes.</p>
+
+    <dl class="def-grid">
+        <dt>Target Method</dt>
+        <dd>
+            <strong>PlayerTag</strong> &mdash; finds the target by tag.<br>
+            <strong>SpecificTransform</strong> &mdash; direct transform reference.
+        </dd>
+        <dt>Min/Max Distance</dt>
+        <dd>The distance range mapped to 0&ndash;1 on the evaluation curve.</dd>
+        <dt>Control Curve</dt>
+        <dd>An AnimationCurve mapping normalised distance to the output value.</dd>
+        <dt>Target Controller</dt>
+        <dd>The MtdMixerParameterController to drive.</dd>
+        <dt>Show Gizmos</dt>
+        <dd>Draws distance-range spheres in the Scene view.</dd>
+    </dl>
+
+
+    <!-- ───────────────────── TRANSITION BEHAVIOUR ───────────────────── -->
+    <h2 id="transition-behaviour">16 &mdash; Transition Behaviour (Runtime Detail)</h2>
+
+    <p>This section describes the runtime behaviour of transitions in detail, covering how the system calculates timing, handles queuing, and supports cancellation.</p>
+
+    <h3>Transition Lifecycle</h3>
+    <p>When a state change occurs (e.g. via <code>MtdApi.SetState</code>), the system follows these steps:</p>
+    <ol>
+        <li>The active State Tree is evaluated to find the new matching State Outcome.</li>
+        <li>If the new outcome matches the currently playing outcome, no action is taken.</li>
+        <li>The TransitionRuleFinder searches for the best matching Transition Rule (see <a href="#transition-rule-priority">priority table</a>). If none is found, a fallback rule is used.</li>
+        <li>A sync point is calculated on the outgoing track's timeline.</li>
+        <li>The sync point is adjusted forward if the transition requires lead time.</li>
+        <li>A playback schedule is computed, determining exactly when each element (fade-out, fade-in, overlay) begins and ends.</li>
+        <li>The incoming track is scheduled via Unity's DSP scheduling for sample-accurate timing.</li>
+        <li>The system enters the "transitioning" state and processes fades each frame until the transition completes.</li>
+    </ol>
+
+    <h3>Sync Point Calculation</h3>
+    <p>The sync point is the moment on the outgoing track's timeline at which the transition is anchored. It is the reference point from which all fade offsets and the incoming track's start time are calculated. All beat- and bar-relative calculations use the outgoing track's BPM, Beats Per Bar, and Beat Value to project musical time from the current playback position.</p>
+
+    <h3>Adjusted Sync Points (Lead Time)</h3>
+    <p>After the initial sync point is calculated, the system checks whether anything in the transition needs time before the sync point arrives (called "lead time"). Three sources are considered:</p>
+    <ol>
+        <li><strong>Incoming track lead time</strong> &mdash; pre-roll for the incoming track's lead-in and/or negative fade-in offset, minus any position offset.</li>
+        <li><strong>Overlay lead time</strong> &mdash; pre-roll for the overlay track's lead-in, minus its position offset.</li>
+        <li><strong>Fade-out lead time</strong> &mdash; a negative fade-out offset on the outgoing track.</li>
+    </ol>
+    <p>The largest of these is the total lead time required. If there is not enough time before the initial sync point, the system pushes it forward to the next valid occurrence of the same sync type. For the Immediate sync type, the sync point is simply moved forward by the required lead time.</p>
+
+    <p><strong>Non-looping outcomes:</strong> if the outgoing track does not loop and has a fixed Play Until position, the sync point is clamped so it does not exceed this endpoint.</p>
+
+    <h3>Pre-Roll Calculation</h3>
+    <p>Pre-roll ensures that material such as a lead-in section or an early fade-in is heard at the correct moment. It is determined by comparing:</p>
+    <ul>
+        <li><strong>Lead-in duration</strong> &mdash; the time between the clip start and the entry point.</li>
+        <li><strong>Negative fade-in offset</strong> &mdash; the absolute value of a negative fade-in offset (one that begins before the sync point).</li>
+    </ul>
+    <p>The larger is used as the initial pre-roll. If neither applies, pre-roll is zero. Out-of-bounds protection ensures pre-roll never places the playhead before the clip start position.</p>
+
+    <p>
+        The final playhead start position is: <code>target position &minus; pre-roll</code>.<br>
+        The final scheduled DSP time is: <code>sync point + position offset + overlay delay &minus; pre-roll</code>.
+    </p>
+
+    <h3>Transition Queuing</h3>
+    <p>Only one transition can be active at a time. If a new transition is requested while one is in progress, the system checks if it is a reversal, and if not, queues the request. Only one request can be queued at a time; a newer request replaces any previously queued one.</p>
+    <p>When the active transition finishes, the queued request is dequeued and processed. If the queued outcome matches the now-playing outcome, it is discarded.</p>
+    <p><strong>Minimum Play Duration:</strong> if specified, no new transition fires until the duration has elapsed from the start of the incoming track's playback. Requests during this cooldown are queued.</p>
+
+    <h3>Transition Reversal</h3>
+    <p>Reversal occurs when the game state returns to the previous state combination during an active transition. The system cancels the transition and fades back to the outgoing track instead of completing the transition.</p>
+    <p>Reversal requires:</p>
+    <ul>
+        <li>The Transition Rule must have "Allow Transition Reversal" enabled.</li>
+        <li>The incoming State Outcome must match the currently fading-out outcome.</li>
+        <li>The transition must be in a phase that permits reversal (controlled by the rule's interruption flags).</li>
+    </ul>
+
+    <h3>State Re-Evaluation</h3>
+    <p>When a transition is about to begin, the system performs a final state re-evaluation. It re-checks the current game states against the active State Tree to confirm the requested outcome is still correct. If states have changed between the initial request and processing, the system automatically corrects to the now-expected outcome. This prevents stale transitions when states change rapidly.</p>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         REFERENCE
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- ───────────────────── API REFERENCE ───────────────────── -->
+    <h2 id="api-reference">17 &mdash; API Reference</h2>
+
+    <p>The public API is accessed via the static <code>MtdApi</code> class in the <code>MusicTransitionDesigner.Authoring</code> namespace.</p>
+
+    <h3>System Control</h3>
+<pre><code><span class="cmt">// Start music and trigger initial state evaluation</span>
+<span class="typ">MtdApi</span>.<span class="fn">StartMusic</span>();
+
+<span class="cmt">// Stop music with a fade. Pass -1 to use the Project Settings default.</span>
+<span class="typ">MtdApi</span>.<span class="fn">StopMusic</span>(<span class="kw">int</span> fadeOutMs = <span class="num">-1</span>);
+
+<span class="cmt">// Pause playback with a fade. Returns the playback time at pause.</span>
+<span class="kw">float</span> pauseTime = <span class="typ">MtdApi</span>.<span class="fn">PauseMusic</span>(<span class="kw">int</span> fadeOutMs = <span class="num">-1</span>);
+
+<span class="cmt">// Resume from pause with a fade-in.</span>
+<span class="typ">MtdApi</span>.<span class="fn">ResumeMusic</span>(<span class="kw">int</span> fadeInMs = <span class="num">-1</span>);</code></pre>
+
+    <h3>State Management</h3>
+<pre><code><span class="cmt">// Replace the active State Tree. Provide a direct reference or GUID.</span>
+<span class="typ">MtdApi</span>.<span class="fn">SetStateTree</span>(<span class="typ">StateTree</span> tree = <span class="kw">null</span>, <span class="kw">string</span> treeGuid = <span class="kw">null</span>);
+
+<span class="cmt">// Set a state value. Use any combination of identifiers.</span>
+<span class="typ">MtdApi</span>.<span class="fn">SetState</span>(
+    <span class="typ">StateGroup</span> group = <span class="kw">null</span>, <span class="kw">string</span> groupName = <span class="kw">null</span>,
+    <span class="kw">string</span> groupGuid = <span class="kw">null</span>, <span class="kw">string</span> stateName = <span class="kw">null</span>,
+    <span class="kw">string</span> stateGuid = <span class="kw">null</span>);
+
+<span class="cmt">// Examples:</span>
+<span class="typ">MtdApi</span>.<span class="fn">SetState</span>(group: combatGroup, stateName: <span class="str">"InCombat"</span>);
+<span class="typ">MtdApi</span>.<span class="fn">SetState</span>(groupGuid: <span class="str">"abc-123"</span>, stateGuid: <span class="str">"def-456"</span>);
+<span class="typ">MtdApi</span>.<span class="fn">SetState</span>(groupName: <span class="str">"Location"</span>, stateName: <span class="str">"Area1"</span>);
+
+<span class="cmt">// Clear a State Group (sets to None).</span>
+<span class="typ">MtdApi</span>.<span class="fn">ClearState</span>(<span class="typ">StateGroup</span> group = <span class="kw">null</span>, <span class="kw">string</span> groupName = <span class="kw">null</span>,
+    <span class="kw">string</span> groupGuid = <span class="kw">null</span>);
+
+<span class="cmt">// Clear all State Groups.</span>
+<span class="typ">MtdApi</span>.<span class="fn">ClearAllStates</span>();
+
+<span class="cmt">// Lock / unlock State Groups to prevent or allow changes.</span>
+<span class="typ">MtdApi</span>.<span class="fn">LockState</span>(...);
+<span class="typ">MtdApi</span>.<span class="fn">UnlockState</span>(...);
+<span class="typ">MtdApi</span>.<span class="fn">LockAllStates</span>();
+<span class="typ">MtdApi</span>.<span class="fn">UnlockAllStates</span>();
+
+<span class="cmt">// Enable or disable state evaluation.</span>
+<span class="typ">MtdApi</span>.<span class="fn">EnableStateEvaluation</span>();
+<span class="typ">MtdApi</span>.<span class="fn">DisableStateEvaluation</span>();</code></pre>
+
+    <h3>Stingers</h3>
+<pre><code><span class="cmt">// Play a one-shot stinger. Provide a direct reference or GUID.</span>
+<span class="cmt">// Pass -1f for volume to use the track's authored volume.</span>
+<span class="typ">MtdApi</span>.<span class="fn">PlayStinger</span>(
+    <span class="typ">MusicTrack</span> stinger = <span class="kw">null</span>, <span class="kw">string</span> stingerGuid = <span class="kw">null</span>,
+    <span class="kw">float</span> volume = <span class="num">-1f</span>,
+    <span class="typ">StingerReFireBehaviour</span> behaviour = <span class="typ">StingerReFireBehaviour</span>.Parallel);
+
+<span class="cmt">// Stop all playing stingers with an optional fade (seconds).</span>
+<span class="typ">MtdApi</span>.<span class="fn">StopAllStingers</span>(<span class="kw">float</span> fadeDuration = <span class="num">0f</span>);</code></pre>
+
+    <h3>Sound Banks</h3>
+<pre><code><span class="cmt">// Get the list of currently loaded Sound Banks.</span>
+<span class="typ">IReadOnlyList</span>&lt;<span class="typ">SoundBank</span>&gt; banks = <span class="typ">MtdApi</span>.ActiveBanks;
+
+<span class="cmt">// Load / unload Sound Banks.</span>
+<span class="typ">MtdApi</span>.<span class="fn">LoadBank</span>(<span class="typ">SoundBank</span> bank);
+<span class="typ">MtdApi</span>.<span class="fn">UnloadBank</span>(<span class="typ">SoundBank</span> bank);
+<span class="typ">MtdApi</span>.<span class="fn">UnloadAllBanks</span>();</code></pre>
+
+    <h3>Event Subscriptions</h3>
+<pre><code><span class="cmt">// Beat callback: bar (int), beat (int), track (MusicTrack), dspTime (double)</span>
+<span class="cmt">// Fires on every beat of the playing track (if it allows subscription).</span>
+<span class="typ">MtdApi</span>.<span class="fn">SubscribeToBeat</span>(<span class="typ">Action</span>&lt;<span class="kw">int</span>, <span class="kw">int</span>, <span class="typ">MusicTrack</span>, <span class="kw">double</span>&gt; callback);
+<span class="typ">MtdApi</span>.<span class="fn">UnsubscribeFromBeat</span>(...);
+
+<span class="cmt">// Bar callback: bar (int), track (MusicTrack). Fires on beat 1 of each bar.</span>
+<span class="typ">MtdApi</span>.<span class="fn">SubscribeToBar</span>(<span class="typ">Action</span>&lt;<span class="kw">int</span>, <span class="typ">MusicTrack</span>&gt; callback);
+<span class="typ">MtdApi</span>.<span class="fn">UnsubscribeFromBar</span>(...);
+
+<span class="cmt">// Fires when a State Outcome reaches its Play Until position (non-looping).</span>
+<span class="typ">MtdApi</span>.<span class="fn">SubscribeToStateOutcomeEnd</span>(<span class="typ">Action</span>&lt;<span class="typ">StateOutcome</span>&gt; callback);
+<span class="typ">MtdApi</span>.<span class="fn">UnsubscribeFromStateOutcomeEnd</span>(...);
+
+<span class="cmt">// Fires when the authoritative musical context track changes.</span>
+<span class="typ">MtdApi</span>.<span class="fn">SubscribeToContextChange</span>(<span class="typ">Action</span>&lt;<span class="typ">MusicTrack</span>&gt; callback);
+<span class="typ">MtdApi</span>.<span class="fn">UnsubscribeFromContextChange</span>(...);</code></pre>
+
+    <h3>MusicTrack Properties (Callbacks &amp; API)</h3>
+    <p>When a MusicTrack is received via an event callback or retrieved from the API, these properties are available:</p>
+
+    <table>
+        <thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+            <tr><td><code>TrackName</code></td><td>string</td><td>Display name.</td></tr>
+            <tr><td><code>Bpm</code></td><td>double</td><td>Tempo in BPM.</td></tr>
+            <tr><td><code>BeatsPerBar</code></td><td>int</td><td>Beats per bar.</td></tr>
+            <tr><td><code>BeatValueType</code></td><td>enum</td><td>Eighth, Quarter, DottedQuarter, Half.</td></tr>
+            <tr><td><code>SecondsPerBeat</code></td><td>double</td><td>Cached seconds per beat.</td></tr>
+            <tr><td><code>Volume</code></td><td>float</td><td>Linear volume (0&ndash;1).</td></tr>
+            <tr><td><code>VolumeDb</code></td><td>float</td><td>Volume in dB (&minus;80 to 0).</td></tr>
+            <tr><td><code>AssetGuid</code></td><td>string</td><td>Unique asset identifier.</td></tr>
+            <tr><td><code>Markers</code></td><td>List&lt;MusicMarker&gt;</td><td>Track markers.</td></tr>
+            <tr><td><code>EntryTimeInSeconds</code></td><td>double</td><td>Entry point time.</td></tr>
+            <tr><td><code>ExitTimeInSeconds</code></td><td>double</td><td>Exit point time.</td></tr>
+            <tr><td><code>LeadInDurationInSeconds</code></td><td>double</td><td>Lead-in duration.</td></tr>
+            <tr><td><code>TailDurationInSeconds</code></td><td>double</td><td>Tail duration.</td></tr>
+            <tr><td><code>ClipStartTimeInSeconds</code></td><td>double</td><td>Effective clip playback start.</td></tr>
+            <tr><td><code>ClipEndTimeInSeconds</code></td><td>double</td><td>Effective clip playback end.</td></tr>
+            <tr><td><code>TrackLengthInSeconds</code></td><td>double</td><td>Full audio clip length.</td></tr>
+            <tr><td><code>AllowSubscriptionToBeatDefinition</code></td><td>bool</td><td>Whether beat/bar callbacks are active.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Utilities</h3>
+<pre><code><span class="cmt">// Convert between dB and linear volume.</span>
+<span class="kw">float</span> linear = <span class="typ">MtdApi</span>.<span class="fn">ConvertDecibelToLinear</span>(<span class="kw">float</span> db);
+<span class="kw">float</span> db     = <span class="typ">MtdApi</span>.<span class="fn">ConvertLinearToDecibel</span>(<span class="kw">float</span> linear);
+
+<span class="cmt">// Get the current authoritative Music Track. Null if no music is playing.</span>
+<span class="typ">MusicTrack</span> track = <span class="typ">MtdApi</span>.<span class="fn">GetCurrentContextTrack</span>();</code></pre>
+
+
+    <!-- ───────────────────── GUID SYSTEM ───────────────────── -->
+    <h2 id="guid-system">18 &mdash; GUID System</h2>
+
+    <p>MTD uses custom GUIDs (not Unity's Asset GUIDs) to provide stable runtime identifiers that survive renaming.</p>
+
+    <h3>Asset GUIDs</h3>
+    <p>The following asset types have auto-generated Asset GUIDs:</p>
+    <ul>
+        <li><strong>Music Tracks</strong> &mdash; used for stinger playback via the API.</li>
+        <li><strong>State Groups</strong> &mdash; used for referencing groups and states via the API.</li>
+        <li><strong>State Trees</strong> &mdash; used for referencing trees via the API.</li>
+    </ul>
+    <p>Individual states within a State Group and Track Markers also have their own GUIDs. GUIDs are generated automatically when an asset is first created and are serialised with the asset.</p>
+
+    <h3>GUID Lookup</h3>
+    <p>All GUIDs can be looked up via <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; GUID Lookup</span>. This window displays every asset and its GUID, with a copy-to-clipboard button for easy use in code.</p>
+
+    <h3>Duplicate GUID Detection</h3>
+    <p>When an asset is duplicated (copy-paste in Unity's Project window), the copy inherits the original's GUIDs, creating a conflict. MTD detects this automatically:</p>
+    <ol>
+        <li>An AssetPostprocessor runs on import and flags potential duplicates with a warning dialog.</li>
+        <li>The validation system marks assets with duplicate GUIDs as invalid.</li>
+        <li>The Asset Manager provides a <strong>Generate New GUIDs</strong> button to resolve the conflict.</li>
+    </ol>
+
+
+    <!-- ───────────────────── ASSET RELATIONSHIPS ───────────────────── -->
+    <h2 id="asset-relationships">19 &mdash; Asset Relationships</h2>
+
+    <p>Understanding how asset types depend on each other:</p>
+
+    <table>
+        <thead><tr><th>Asset Type</th><th>Role</th></tr></thead>
+        <tbody>
+            <tr><td><strong>State Groups</strong></td><td>Define game-state categories (e.g. "GamePhase") and their possible values (e.g. "Exploration", "Combat", "Boss").</td></tr>
+            <tr><td><strong>State Trees</strong></td><td>Use State Groups as columns in a decision matrix. Each row maps a combination of states to a State Outcome. Only one tree is active at a time.</td></tr>
+            <tr><td><strong>State Outcomes</strong></td><td>Reference a Music Track and define playback parameters. They are the result of a State Tree evaluation.</td></tr>
+            <tr><td><strong>Outcome Categories</strong></td><td>Tag State Outcomes for use in broad Transition Rules.</td></tr>
+            <tr><td><strong>Transition Rules</strong></td><td>Define how playback transitions between State Outcomes. Can reference specific outcomes or entire categories.</td></tr>
+            <tr><td><strong>Sound Banks</strong></td><td>Package State Trees, Music Tracks, and Transition Rules for runtime loading. Dependencies are compiled automatically.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Dependency Chain</h3>
+<pre><code>Music Track      &larr; State Outcome      &larr; State Tree Entry
+State Group      &larr; State Tree Hierarchy
+State Outcome    &larr; Transition Rule
+Outcome Category &larr; Transition Rule
+State Tree       &larr; Sound Bank
+Music Track      &larr; Sound Bank
+Transition Rule  &larr; Sound Bank</code></pre>
+
+
+    <!-- ───────────────────── VALIDATION ───────────────────── -->
+    <h2 id="validation">20 &mdash; Editor Validation</h2>
+
+    <p>MTD includes a comprehensive validation system that runs automatically and flags issues in the Asset Manager.</p>
+
+    <h3>Per-Asset Validation Rules</h3>
+
+    <h4>Music Tracks</h4>
+    <ul>
+        <li>Must have a valid Audio Clip.</li>
+        <li>No duplicate GUIDs.</li>
+    </ul>
+
+    <h4>State Groups</h4>
+    <ul>
+        <li>Must have a unique Group Name.</li>
+        <li>Must have at least one state.</li>
+        <li>No duplicate state names within the group.</li>
+        <li>No duplicate Group Names across the project.</li>
+        <li>No duplicate GUIDs.</li>
+    </ul>
+
+    <h4>State Trees</h4>
+    <ul>
+        <li>Must have at least one State Group in the hierarchy.</li>
+        <li>All hierarchy State Groups must be valid and enabled.</li>
+        <li>All referenced State Outcomes must be valid and enabled.</li>
+        <li>Structural analysis: detects shadowed, partially blocked, and duplicate entries.</li>
+        <li>No duplicate GUIDs.</li>
+    </ul>
+
+    <h4>State Outcomes</h4>
+    <ul>
+        <li>Must have a valid Music Track (which must itself be valid).</li>
+        <li>If a Category is assigned, it must be enabled.</li>
+        <li>All marker references must point to existing markers on the track.</li>
+        <li>Timeline logic: start position must be before end position; loop point must be before end position.</li>
+        <li>Random Marker choices must all be before the end position.</li>
+    </ul>
+
+    <h4>Transition Rules</h4>
+    <ul>
+        <li>Track A and Track B must have valid references matching their type.</li>
+        <li>Referenced State Outcomes must be valid; referenced Categories must be enabled.</li>
+        <li>Marker references must exist on the correct track and be within valid ranges.</li>
+        <li>If Overlay is enabled, an Overlay Track must be assigned.</li>
+        <li>No conflicting rule definitions; bidirectional rules are checked for reverse-path conflicts.</li>
+    </ul>
+
+    <h4>Sound Banks</h4>
+    <ul>
+        <li>Must have at least one source (State Tree or Music Track).</li>
+        <li>All sources must be valid and enabled.</li>
+        <li>Warns if compilation skipped invalid/disabled assets.</li>
+    </ul>
+
+    <h3>Cascading Validation</h3>
+    <p>Validation cascades through the dependency chain. If a Music Track becomes invalid, all State Outcomes referencing it become invalid, which in turn invalidates any State Trees and Transition Rules that reference those outcomes. The Asset Manager reflects these cascading errors.</p>
+
+    <h3>Deleted Asset Cleanup</h3>
+    <p>The editor automatically detects and cleans up references to deleted assets across all dependent assets.</p>
+
+
+    <!-- ───────────────────── TROUBLESHOOTING ───────────────────── -->
+    <h2 id="troubleshooting">21 &mdash; Troubleshooting</h2>
+
+    <h3>Music Not Playing</h3>
+    <ul>
+        <li>Ensure <strong>MtdSceneInitialiser</strong> is present in the scene.</li>
+        <li>Check that at least one Sound Bank is loaded (via SceneInitialiser or API).</li>
+        <li>Verify that the Sound Bank's sources are valid (check for validation errors in the Asset Manager).</li>
+        <li>Ensure a State Tree is active and its entries have valid State Outcomes.</li>
+        <li>Check that audio files are marked as <strong>Addressable</strong>.</li>
+        <li>Look for warnings/errors in the Unity Console (ensure logging is enabled in Project Settings).</li>
+    </ul>
+
+    <h3>Transitions Not Firing</h3>
+    <ul>
+        <li>Verify that a Transition Rule exists for the current transition path.</li>
+        <li>Check that the Transition Rule is enabled.</li>
+        <li>Ensure the rule is included in a loaded Sound Bank.</li>
+        <li>Check for rule conflicts (duplicate definition warnings in the Asset Manager).</li>
+    </ul>
+
+    <h3>Invalid Assets</h3>
+    <ul>
+        <li>Check for duplicate GUIDs (caused by copy-pasting assets). Use <strong>Generate New GUIDs</strong>.</li>
+        <li>Validation cascades: a single invalid Music Track can invalidate all dependent assets. Fix the root cause and dependent assets will become valid again.</li>
+        <li>Ensure all referenced assets (tracks, groups, outcomes, categories) exist and are enabled.</li>
+    </ul>
+
+    <h3>Beat/Bar Callbacks Not Firing</h3>
+    <ul>
+        <li>Ensure the playing Music Track has <strong>Allow Subscription To Beat Definition</strong> enabled.</li>
+        <li>Check that you have subscribed using the correct API method (<code>SubscribeToBeat</code> or <code>SubscribeToBar</code>).</li>
+        <li>Verify music is actually playing (not paused or stopped).</li>
+    </ul>
+
+    <h3>Stingers Not Playing</h3>
+    <ul>
+        <li>Ensure the stinger's Music Track is included in a loaded Sound Bank.</li>
+        <li>Verify the audio clip is loaded (the bank must be fully loaded before stingers work).</li>
+        <li>Check re-fire behaviour: <strong>PreventRefire</strong> will block a stinger if it's already playing.</li>
+    </ul>
+
+    <div class="tip">Use <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; GUID Lookup</span> to find all asset and state GUIDs quickly.</div>
+
+
+    <!-- ───────────────────── FOOTER ───────────────────── -->
+    <hr>
+    <p style="font-size:13px; color:var(--text-muted); text-align:center;">
+        Music Transition Designer &copy; 2024&ndash;2026 Josh Winiberg. All rights reserved.<br>
+        Support: <a href="mailto:contact@joshwiniberg.co.uk">contact@joshwiniberg.co.uk</a>
+    </p>
+
+</div><!-- /.main -->
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('show');
+}
+
+// Active sidebar link tracking
+const links = document.querySelectorAll('.sidebar a[href^="#"]');
+const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+function updateActive() {
+  let current = '';
+  const offset = 80;
+  for (const section of sections) {
+    if (section.getBoundingClientRect().top <= offset) current = section.id;
+  }
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+updateActive();
+
+// Close sidebar on link click (mobile)
+links.forEach(a => a.addEventListener('click', () => {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('show');
+}));
+</script>
+
+</body>
+</html>

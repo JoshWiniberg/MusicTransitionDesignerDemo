@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 5956fa27da79ced40b0023b6075d52b8
+  m_SerializeEntries:
+  - m_GUID: 2b2775a48d74ae540b657b4da2cd93e6
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/MX_AREA2_80BPM_44_16Bars_4BarTail.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 538db5d71e36b8c46ba128c0a836e6d7
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/MX_TENSE_80BPM_44_16Bars_4BarTail.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2b94404b891a4140b2c86842adeb72c
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/Stingers/overlay_shortRiser_160bpm_4-4.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b86dc28f54693d748b4a54626284f560
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/Adventure/mx_level1_fort_exploration_4-4_150bpm_ePhrygian.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc692727079182f45a17619779fc9ca1
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/MX_AREA1_80BPM_44_16Bars_4BarTail.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f59fb91fedc42b146be5a915a7f43e8f
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/Adventure/mx_level1_fort_combat_4-4_150bpm_ePhrygian.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: cf52cf9b2c7a9f64f8e8a94ac4121723, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bd03973a729680542ad1b7da352e3d04, type: 2}
+    - {fileID: 11400000, guid: 2c4d4325698c88442896f2a487a90b11, type: 2}

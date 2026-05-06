@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026ed22323d5b7d4f949231bd1644809, type: 3}
+  m_Name: SB_Adventure
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.SoundBank
+  _sourceStateTrees:
+  - {fileID: 11400000, guid: 5b542ccb0cc67dd4eac9db4bf5683167, type: 2}
+  _sourceMusicTracks: []
+  RulesToCompile: 1
+  SourceTransitionRules: []
+  _compiledTracks:
+  - {fileID: 11400000, guid: c067806780280a84293648dd216f1742, type: 2}
+  - {fileID: 11400000, guid: 197aca432032c9943abd14ef68b2771d, type: 2}
+  - {fileID: 11400000, guid: e1bb3de591b10c24892d6b8fc448294a, type: 2}
+  _compiledOutcomes:
+  - {fileID: 11400000, guid: 80264acf71ef84249836aba7126bc7bf, type: 2}
+  - {fileID: 11400000, guid: bf4f1f70c818c384db963c278233f195, type: 2}
+  _compiledTransitionRules:
+  - {fileID: 11400000, guid: c07b720c2500227439126a897c3419a1, type: 2}
+  - {fileID: 11400000, guid: 9a62b6603402b52438cbd643a8c70de6, type: 2}
+  - {fileID: 11400000, guid: 503fac5ac499a8a418cd54d686e53669, type: 2}
+  - {fileID: 11400000, guid: b587631c16ac59f4dbbc11dd53d17369, type: 2}
+  - {fileID: 11400000, guid: 44964c30839cceb498469158f593b884, type: 2}
+  - {fileID: 11400000, guid: 3564938978d354f4aa6aea795d92abbb, type: 2}
+  IsIncomplete: 0

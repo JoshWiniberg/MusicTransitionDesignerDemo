@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe47fd6cc232434689863fd3010be50, type: 3}
+  m_Name: MtdEditorData
+  m_EditorClassIdentifier: MusicTransitionDesigner.Editor::MusicTransitionDesigner.Editor.MtdEditorData
+  MusicTrackFolders:
+  - Name: Cyberpunk
+    Path: 
+    Guid: eb16f41d-c1fc-4256-9573-d2853767c17d
+    IsExpanded: 1
+    AssetGuids: []
+    SubFolders:
+    - rid: 1456183450079068231
+    - rid: 1456183450079068232
+  - Name: Adventure
+    Path: 
+    Guid: 4cb85e68-e72e-4bca-8499-50592727f777
+    IsExpanded: 1
+    AssetGuids:
+    - 197aca432032c9943abd14ef68b2771d
+    - c067806780280a84293648dd216f1742
+    SubFolders: []
+  - Name: Stingers
+    Path: 
+    Guid: 65d56d48-b327-4ce0-81b3-d70392b67b2d
+    IsExpanded: 1
+    AssetGuids:
+    - e1bb3de591b10c24892d6b8fc448294a
+    SubFolders: []
+  StateGroupFolders:
+  - Name: StateGroups
+    Path: 
+    Guid: d682df10-7ebe-4e13-8916-5670e07a48e4
+    IsExpanded: 1
+    AssetGuids:
+    - fa99f46fd22b3af449953bc51b5c9a82
+    - 6e1271cf994c1064a97e27607a1953c7
+    SubFolders: []
+  StateOutcomeFolders:
+  - Name: Cyberpunk
+    Path: 
+    Guid: c4df6fa6-c86b-4732-8040-39677115408d
+    IsExpanded: 1
+    AssetGuids: []
+    SubFolders:
+    - rid: 1456183450079068233
+    - rid: 1456183450079068234
+  - Name: Adventure
+    Path: 
+    Guid: dceb9aef-8022-4365-a3de-4faa9a7044a3
+    IsExpanded: 1
+    AssetGuids:
+    - 80264acf71ef84249836aba7126bc7bf
+    - bf4f1f70c818c384db963c278233f195
+    SubFolders: []
+  TransitionRuleFolders:
+  - Name: Generic
+    Path: 
+    Guid: d2038b9c-c524-44de-9945-52f0ade214aa
+    IsExpanded: 1
+    AssetGuids:
+    - b587631c16ac59f4dbbc11dd53d17369
+    - 3564938978d354f4aa6aea795d92abbb
+    - 503fac5ac499a8a418cd54d686e53669
+    SubFolders: []
+  - Name: Cyberpunk
+    Path: 
+    Guid: c5f54c99-63af-45d7-b798-98725651706c
+    IsExpanded: 1
+    AssetGuids:
+    - 7148988ec3ff38f4b92eaafacfc4ee22
+    - 001ab845bbbdef940b5aca412baadeb4
+    - c8106cc73d8f12542b7ba9316d545b8b
+    - ca6d0e9d19f45a84c82ded9d4cc61d2f
+    SubFolders: []
+  - Name: Adventure
+    Path: 
+    Guid: 3c1544f7-0334-49ba-956b-149810e550ce
+    IsExpanded: 1
+    AssetGuids:
+    - 9a62b6603402b52438cbd643a8c70de6
+    - c07b720c2500227439126a897c3419a1
+    SubFolders: []
+  - Name: CategoryTransitions
+    Path: 
+    Guid: b8f613e8-e48e-4f8e-be6e-05291695b7fc
+    IsExpanded: 1
+    AssetGuids:
+    - 44964c30839cceb498469158f593b884
+    SubFolders: []
+  SoundBankFolders:
+  - Name: Soundbanks
+    Path: 
+    Guid: eee43f28-ca5c-45d7-8556-2833ba38d043
+    IsExpanded: 1
+    AssetGuids:
+    - e2459d82ffb114945bc337d42f36c6e9
+    - 2e7a20e3e327a3e4dbe63fb2252074d7
+    SubFolders: []
+  StateTreeFolders:
+  - Name: StateTrees
+    Path: 
+    Guid: 74b88a10-3ed8-48f3-b783-4a0d8eff7680
+    IsExpanded: 1
+    AssetGuids:
+    - b71a865edd0d7544e9c5c9c421bc867f
+    - 5b542ccb0cc67dd4eac9db4bf5683167
+    SubFolders: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1456183450079068231
+      type: {class: AssetFolder, ns: MusicTransitionDesigner.Editor, asm: MusicTransitionDesigner.Editor}
+      data:
+        Name: Locations
+        Path: 
+        Guid: 2ad7c06a-032f-495b-9139-fde8dd540c95
+        IsExpanded: 1
+        AssetGuids:
+        - 07de8d5f759dc304f8a0904a7b517955
+        - 0100f9020861a8749a5f4d782c381db0
+        SubFolders: []
+    - rid: 1456183450079068232
+      type: {class: AssetFolder, ns: MusicTransitionDesigner.Editor, asm: MusicTransitionDesigner.Editor}
+      data:
+        Name: Combat
+        Path: 
+        Guid: c78eaa67-62a9-4a5e-a749-f00af8727442
+        IsExpanded: 1
+        AssetGuids:
+        - 95ecddab5b49c2845af44114a1636735
+        SubFolders: []
+    - rid: 1456183450079068233
+      type: {class: AssetFolder, ns: MusicTransitionDesigner.Editor, asm: MusicTransitionDesigner.Editor}
+      data:
+        Name: Locations
+        Path: 
+        Guid: 16e8648a-5f60-472d-9d49-d9108baef22a
+        IsExpanded: 1
+        AssetGuids:
+        - 68a792b24ebf1064c9838995f1f973bf
+        - aef582edc4420e740bb9dddec0c84e9e
+        SubFolders: []
+    - rid: 1456183450079068234
+      type: {class: AssetFolder, ns: MusicTransitionDesigner.Editor, asm: MusicTransitionDesigner.Editor}
+      data:
+        Name: Combat
+        Path: 
+        Guid: e821e31e-aa5d-4dda-b2f5-8d5f05dbe546
+        IsExpanded: 1
+        AssetGuids:
+        - 59baab6f236715c46a696fdfefabdde4
+        SubFolders: []

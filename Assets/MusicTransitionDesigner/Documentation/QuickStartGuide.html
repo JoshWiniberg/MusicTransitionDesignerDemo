@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Transition Designer — Quick Start Guide</title>
+  <style>
+    :root {
+      --bg: #0e0e11;
+      --bg-surface: #16161b;
+      --bg-raised: #1e1e25;
+      --bg-hover: #252530;
+      --border: #2a2a36;
+      --border-light: #35354a;
+      --text: #d4d4dc;
+      --text-muted: #8888a0;
+      --text-heading: #eeeef4;
+      --accent: #7b8cff;
+      --accent-bg: rgba(123,140,255,0.08);
+      --warn: #e8a84c;
+      --warn-bg: rgba(232,168,76,0.08);
+      --warn-border: rgba(232,168,76,0.25);
+      --info: #5cb8d6;
+      --info-bg: rgba(92,184,214,0.08);
+      --info-border: rgba(92,184,214,0.25);
+      --code-bg: #12121a;
+      --nav-h: 56px;
+      --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .topnav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(14,14,17,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 24px;
+      z-index: 100;
+    }
+    .topnav-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+    .topnav-title span { color: var(--accent); }
+    .topnav-subtitle {
+      margin-left: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .main {
+      max-width: 780px;
+      margin: var(--nav-h) auto 0;
+      padding: 40px 32px 120px;
+    }
+
+    h1 { font-size: 30px; font-weight: 800; color: var(--text-heading);
+      letter-spacing: -0.03em; margin-bottom: 6px; }
+    h1 small { font-size: 14px; font-weight: 400; color: var(--text-muted); display: block; margin-top: 4px; }
+    h2 {
+      font-size: 20px; font-weight: 700; color: var(--text-heading);
+      margin: 48px 0 14px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.02em;
+    }
+    h3 { font-size: 16px; font-weight: 600; color: var(--text-heading); margin: 28px 0 10px; }
+
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    li > ul, li > ol { margin-top: 6px; margin-bottom: 0; }
+
+    strong { color: var(--text-heading); font-weight: 600; }
+    code {
+      font-family: var(--font-mono); font-size: 13px;
+      background: var(--code-bg); border: 1px solid var(--border);
+      padding: 1px 6px; border-radius: 4px; color: var(--accent);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .menu-path {
+      font-family: var(--font-mono); font-size: 13px;
+      background: var(--bg-raised); border: 1px solid var(--border);
+      padding: 2px 8px; border-radius: 4px; color: var(--text); white-space: nowrap;
+    }
+
+    .note, .tip, .warn {
+      border-radius: 8px; padding: 14px 18px;
+      margin: 16px 0; font-size: 14px; line-height: 1.6;
+      border-left: 3px solid;
+    }
+    .note { background: var(--info-bg); border-color: var(--info); }
+    .note::before { content: "Note"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--info); margin-bottom: 4px; }
+    .tip { background: var(--accent-bg); border-color: var(--accent); }
+    .tip::before { content: "Tip"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 4px; }
+    .warn { background: var(--warn-bg); border-color: var(--warn); }
+    .warn::before { content: "Important"; display: block; font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--warn); margin-bottom: 4px; }
+
+    .step {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin: 28px 0 20px;
+    }
+    .step-num {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent); color: var(--bg); font-weight: 700;
+      font-size: 15px; flex-shrink: 0; margin-top: 2px;
+    }
+    .step-title {
+      font-size: 17px; font-weight: 700; color: var(--text-heading);
+      margin: 0;
+    }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    .arrow { margin: 20px 0; text-align: center; font-size: 22px; color: var(--text-muted); }
+
+    @media (max-width: 640px) {
+      .main { padding: 32px 18px 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-title"><span>MTD</span> Music Transition Designer</div>
+  <div class="topnav-subtitle">Quick Start Guide</div>
+</nav>
+
+<div class="main">
+
+<h1>Quick Start Guide
+  <small>Get music playing in your project in 10 steps</small>
+</h1>
+
+<p>This guide walks you through the minimum steps to go from import to adaptive music playback. For full details on every feature and setting, see the <strong>MusicTransitionDesignerGuide</strong>.</p>
+
+<div class="note">MTD requires <strong>Unity 2023.1+</strong> and depends on <strong>Unity Addressables</strong> (<code>com.unity.addressables</code>).</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">1</div>
+  <h3 class="step-title">Import the package</h3>
+</div>
+
+<p>Import MusicTransitionDesigner into your project. It installs to <code>Assets/MusicTransitionDesigner</code> and creates default asset folders. The <strong>Startup Window</strong> will open automatically.</p>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">2</div>
+  <h3 class="step-title">Create core data assets</h3>
+</div>
+
+<p>In the Startup Window, click the button to generate the core data assets (<strong>MtdProjectSettings</strong> and <strong>MtdEditorData</strong>). These are required for MTD to function.</p>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">3</div>
+  <h3 class="step-title">Configure Project Settings</h3>
+</div>
+
+<p>Open <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Settings</span> and assign your <strong>BGM</strong> and <strong>Stinger Mixer Groups</strong>. You can also set default fade durations for system-wide playback (Stop, Pause, and Resume), configure debug behaviour, and assign default folders for assets here. This can be revisited at any time.</p>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">4</div>
+  <h3 class="step-title">Import audio files and mark them as Addressable</h3>
+</div>
+
+<p>Import your audio clips into the project (the default folder is <code>00_AudioFiles</code>). Each clip you want to use with MTD <strong>must be marked as Addressable</strong> in the Inspector.</p>
+
+<div class="warn">Set each audio clip's <strong>Load Type</strong> to <strong>Decompress On Load</strong> while authoring. This is required for the Music Track Editor to display a high-resolution waveform. You can change the Load Type back after you've finished setting up the Music Track.</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">5</div>
+  <h3 class="step-title">Create Music Tracks</h3>
+</div>
+
+<p>Open the <strong>Asset Manager</strong> via <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Asset Manager</span>.</p>
+
+<div class="tip"><strong>Opening assets:</strong> <strong>Double-click an asset</strong> in the Asset Manager list to open it for editing in the tab above.</div>
+
+<div class="note"><strong>Assets that require validation:</strong> <strong>State Groups</strong>, <strong>Outcome Categories</strong>, <strong>State Outcomes</strong>, and <strong>Transition Rules</strong> must be validated before they become active. When you finish editing one of these, always press <strong>Validate and Enable</strong> first, then <strong>Save</strong>.</div>
+
+<p>In the <strong>Music Tracks</strong> tab, create a Music Track for each audio clip. <strong>Double-click</strong> a track in the list to open it. For each track:</p>
+<ul>
+  <li>Assign the audio clip.</li>
+  <li>Set the <strong>BPM</strong> and <strong>time signature</strong>.</li>
+  <li>Set the <strong>Entry Point</strong> (where Bar 1 Beat 1 sits) and <strong>Exit Point</strong> (where the track should stop or loop).</li>
+  <li>Optionally add <strong>Track Markers</strong>, a <strong>Lead-In</strong>, or a <strong>Tail</strong>.</li>
+</ul>
+
+<div class="warn">Do not duplicate Music Track assets via copy-paste in Unity's Project window. This causes GUID conflicts that will invalidate the asset and anything that references it. If this happens, open the duplicate and press <strong>Generate New GUIDs</strong>.</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">6</div>
+  <h3 class="step-title">Create State Groups</h3>
+</div>
+
+<p>In the <strong>State Groups</strong> tab, create groups that represent your game-state categories. For example:</p>
+<ul>
+  <li>A group called <strong>Location</strong> with states: <em>Village</em>, <em>Forest</em>, <em>Dungeon</em>.</li>
+  <li>A group called <strong>CombatStatus</strong> with states: <em>NotInCombat</em>, <em>InCombat</em>.</li>
+</ul>
+<p><strong>Double-click</strong> the State Group in the list to open it. When finished, press <strong>Validate and Enable</strong> first, then <strong>Save</strong>.</p>
+
+<div class="note">The same GUID duplication warning applies to State Groups. Do not copy-paste State Group assets.</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">7</div>
+  <h3 class="step-title">Create a State Tree</h3>
+</div>
+
+<p>In the <strong>State Trees</strong> tab, create a State Tree. <strong>Double-click</strong> it in the list to open it. This maps state combinations to music.</p>
+<ol>
+  <li>Add your State Groups to the <strong>State Hierarchy</strong>.</li>
+  <li>Press <strong>New Branch</strong> to create branches.</li>
+  <li>For each branch, select the state conditions that must be met (states within a column = OR; across columns = AND).</li>
+  <li><strong>Create or assign a State Outcome</strong> for each branch. State Outcomes can be created directly from here.</li>
+</ol>
+
+<p>Branches evaluate <strong>top to bottom</strong> &mdash; the first match wins. Watch for shadowing warnings if a higher branch makes a lower one unreachable.</p>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">8</div>
+  <h3 class="step-title">Edit State Outcomes</h3>
+</div>
+
+<p>In the <strong>State Outcomes</strong> tab, <strong>double-click</strong> each State Outcome in the list to open it and configure playback:</p>
+<ul>
+  <li>Assign a <strong>Music Track</strong>.</li>
+  <li>Set <strong>Play From</strong>, <strong>Play Until</strong>, and <strong>Loop</strong> behaviour.</li>
+  <li>Optionally override the track's default volume.</li>
+</ul>
+<p>When finished, press <strong>Validate and Enable</strong> first, then <strong>Save</strong>.</p>
+
+<div class="note">The Play Until position must be later than the Play From and Loop To positions, or the asset will not validate.</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">9</div>
+  <h3 class="step-title">Create Transition Rules</h3>
+</div>
+
+<p>In the <strong>Transition Rules</strong> tab, create rules that define how music changes between State Outcomes. <strong>Double-click</strong> a rule in the list to open it. For each rule:</p>
+<ul>
+  <li>Set the <strong>Track A</strong> (outgoing) and <strong>Track B</strong> (incoming) types &mdash; these can be specific State Outcomes, Outcome Categories, Any, or None.</li>
+  <li>Choose a <strong>Sync Point</strong> (e.g. On Next Bar, Immediate, On Marker).</li>
+  <li>Configure <strong>fade settings</strong> for the outgoing and incoming tracks.</li>
+</ul>
+<p>When finished, press <strong>Validate and Enable</strong> first, then <strong>Save</strong>.</p>
+
+<div class="tip">Start with a single <strong>Any &rarr; Any</strong> rule as a fallback. You can add more specific rules later &mdash; they will automatically take priority. If no rule matches at all, MTD will immediately stop the current track and play the next one.</div>
+
+<!-- ────────────────────────────────── -->
+
+<div class="step">
+  <div class="step-num">10</div>
+  <h3 class="step-title">Create a SoundBank, set up the scene, and play</h3>
+</div>
+
+<h3>Create a SoundBank</h3>
+<p>In the <strong>SoundBanks</strong> tab, create a SoundBank and <strong>double-click</strong> it to open it. Add your State Tree to the <strong>Source State Trees</strong> list. This automatically includes all referenced State Outcomes, Music Tracks, and applicable Transition Rules.</p>
+
+<h3>Set up the scene</h3>
+<p>Add the <strong>MtdSceneInitialiser</strong> prefab to your scene. On the component:</p>
+<ul>
+  <li>Add your SoundBank to the <strong>Persistent Scene Banks</strong> list.</li>
+  <li>Set the <strong>Initial State Tree</strong>.</li>
+  <li>Set the <strong>Initial States</strong> (the starting state for each State Group).</li>
+  <li>Set <strong>Playback</strong> to <strong>Start</strong> to begin music automatically.</li>
+</ul>
+
+<h3>Trigger state changes</h3>
+<p>To change music during gameplay, set states using either:</p>
+<ul>
+  <li><strong>Components</strong> &mdash; add an <code>MtdOnTriggerEnter</code> (or any other trigger) and an <code>MtdStateControl</code> action to a GameObject, then drag the action into the trigger's list.</li>
+  <li><strong>Code</strong> &mdash; call <code>MtdApi.SetState</code>. See MtdApi.cs or MusicTransitionDesignerGuide.html for full details on parameters.</li>
+</ul>
+
+<p>Press Play. Music should start, and changing states will trigger transitions according to your rules.</p>
+
+<!-- ────────────────────────────────── -->
+
+<hr>
+
+<h2>Test with the Preview Window</h2>
+
+<p>You don't need to enter Play Mode to test transitions. Open <span class="menu-path">Tools &rarr; Music Transition Designer &rarr; Preview Window</span>, load your SoundBanks, set the active tree and states, press <strong>Play</strong>, then change states and click <strong>Transition Now</strong> to audition transitions directly in the editor.</p>
+
+<hr>
+
+<h2>Common pitfalls</h2>
+
+<ul>
+  <li><strong>Audio not marked as Addressable</strong> &mdash; clips won't load at runtime. Check each clip's Inspector.</li>
+  <li><strong>Waveform is low-resolution</strong> &mdash; set the clip's Load Type to <strong>Decompress On Load</strong> while authoring.</li>
+  <li><strong>Duplicated assets</strong> &mdash; copy-pasting Music Tracks, State Groups, or State Trees in Unity's Project window causes GUID conflicts. Use <strong>Generate New GUIDs</strong> on the duplicate.</li>
+  <li><strong>No music playing</strong> &mdash; ensure MtdSceneInitialiser is in the scene, at least one SoundBank is loaded, a State Tree is active, and its entries have valid State Outcomes.</li>
+  <li><strong>Transitions not firing</strong> &mdash; check that a Transition Rule exists for the transition path, is enabled, and is included in a loaded SoundBank.</li>
+  <li><strong>Validation errors / asset stays disabled</strong> &mdash; for State Groups, Outcome Categories, State Outcomes, and Transition Rules, press <strong>Validate and Enable</strong> before <strong>Save</strong>. The Asset Manager also flags issues in real time; fix the root cause (usually a missing reference or timeline ordering issue) and dependent assets will become valid again.</li>
+</ul>
+
+<hr>
+
+<p style="font-size:13px; color:var(--text-muted); text-align:center;">
+  For the full reference, see the <strong>MusicTransitionDesignerGuide</strong>.<br>
+  Music Transition Designer &copy; 2024&ndash;2026 Josh Winiberg. All rights reserved.<br>
+  Support: <a href="mailto:contact@joshwiniberg.co.uk">contact@joshwiniberg.co.uk</a>
+</p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9148fc30dc1afd498b1a56200fe1ace, type: 3}
+  m_Name: MT_AdventureOverlay
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.MusicTrack
+  ClipAssetReference:
+    m_AssetGUID: b2b94404b891a4140b2c86842adeb72c
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  TrackName: overlay_shortRiser_160bpm_4-4
+  VolumeDb: 0
+  Bpm: 160
+  BeatsPerBar: 4
+  BeatValueType: 2
+  AllowSubscriptionToBeatDefinition: 1
+  Markers: []
+  EntryPointMs: 375
+  ExitPointMs: 375
+  ExitBar: 1
+  ExitBeat: 1
+  ExitMs: 0
+  LeadInBars: 0
+  LeadInBeats: 1
+  LeadInMs: 0
+  TailBars: 2
+  TailBeats: 0
+  TailMs: 0.9999275207519531
+  _cachedEntryTime: 0.375
+  _cachedExitTime: 0.375
+  _cachedLeadInSecs: 0.375
+  _cachedTailSecs: 3.000999927520752
+  ClipStartTimeInSeconds: 0
+  ClipEndTimeInSeconds: 3.375999927520752
+  StartBar: 0
+  StartBeat: 4
+  StartMs: 0
+  EndBar: 3
+  EndBeat: 1
+  EndMs: 0.9999275207519531
+  LeadInDurationTotalMs: 375
+  TailDurationTotalMs: 3000.999927520752
+  FadeInBars: 0
+  FadeInBeats: 1
+  FadeInMs: 0
+  FadeInType: 4
+  FadeOutBars: 2
+  FadeOutBeats: 0
+  FadeOutMs: 0.9999275207519531
+  FadeOutType: 4
+  FadeInEndTime: 0.375
+  FadeOutStartTime: 0.375
+  _fadeDurationsMigrated: 1
+  _assetGuid: 9937a37b-d5d2-4825-ab1a-532693d61dda

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9148fc30dc1afd498b1a56200fe1ace, type: 3}
+  m_Name: MT_AdventureExploration
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.MusicTrack
+  ClipAssetReference:
+    m_AssetGUID: b86dc28f54693d748b4a54626284f560
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  TrackName: mx_level1_fort_exploration_4-4_150bpm_ePhrygian
+  VolumeDb: -6
+  Bpm: 150
+  BeatsPerBar: 4
+  BeatValueType: 2
+  AllowSubscriptionToBeatDefinition: 1
+  Markers: []
+  EntryPointMs: 0
+  ExitPointMs: 102400
+  ExitBar: 65
+  ExitBeat: 1
+  ExitMs: 0
+  LeadInBars: 0
+  LeadInBeats: 0
+  LeadInMs: 0
+  TailBars: 2
+  TailBeats: 0
+  TailMs: 0
+  _cachedEntryTime: 0
+  _cachedExitTime: 102.4
+  _cachedLeadInSecs: 0
+  _cachedTailSecs: 3.2
+  ClipStartTimeInSeconds: 0
+  ClipEndTimeInSeconds: 105.60000000000001
+  StartBar: 1
+  StartBeat: 1
+  StartMs: 0
+  EndBar: 67
+  EndBeat: 1
+  EndMs: 0
+  LeadInDurationTotalMs: 0
+  TailDurationTotalMs: 3200
+  FadeInBars: 0
+  FadeInBeats: 0
+  FadeInMs: 0
+  FadeInType: 3
+  FadeOutBars: 1
+  FadeOutBeats: 0
+  FadeOutMs: 0
+  FadeOutType: 3
+  FadeInEndTime: 0
+  FadeOutStartTime: 104.00000000000001
+  _fadeDurationsMigrated: 1
+  _assetGuid: 6da4656a-c9aa-4b07-a2d9-934cab5633e2

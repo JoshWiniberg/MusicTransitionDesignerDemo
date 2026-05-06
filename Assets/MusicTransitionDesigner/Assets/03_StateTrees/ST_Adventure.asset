@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecbf3ccc2f9418498c7d86493712340, type: 3}
+  m_Name: ST_Adventure
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.StateTree
+  Hierarchy:
+  - {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+  Entries:
+  - Guid: 80fb4beb-f98a-4e49-aede-f368747bf0e6
+    EntryName: Exploration
+    ResultOutcome: {fileID: 11400000, guid: bf4f1f70c818c384db963c278233f195, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - 5b753dc4-ac7d-4ec3-9b82-b3ce47878bf3
+      Ignore: 0
+    IsMatrixExpanded: 1
+  - Guid: 08fe2b87-bf65-4b63-b4d3-ce19bf949558
+    EntryName: Combat
+    ResultOutcome: {fileID: 11400000, guid: 80264acf71ef84249836aba7126bc7bf, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - fcb757f5-dce8-49a5-92e8-04c200c078a4
+      Ignore: 0
+    IsMatrixExpanded: 1
+  Folders: []
+  _assetGuid: 710ddcd9-68ea-4023-b23d-a945330a1b99
+  references:
+    version: 2
+    RefIds: []

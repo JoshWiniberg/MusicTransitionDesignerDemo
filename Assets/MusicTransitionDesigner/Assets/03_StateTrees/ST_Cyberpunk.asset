@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecbf3ccc2f9418498c7d86493712340, type: 3}
+  m_Name: ST_Cyberpunk
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.StateTree
+  Hierarchy:
+  - {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+  - {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+  Entries:
+  - Guid: 7398db9b-c723-46a9-93a5-7499f4e3b762
+    EntryName: Area1Exp
+    ResultOutcome: {fileID: 11400000, guid: 68a792b24ebf1064c9838995f1f973bf, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - f96fc9c1-7694-4f3d-a14c-d6724e3c5bf6
+      Ignore: 0
+    - StateGroup: {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - 5b753dc4-ac7d-4ec3-9b82-b3ce47878bf3
+      Ignore: 0
+    IsMatrixExpanded: 1
+  - Guid: 52998a4b-bd97-4f44-82f9-0413fefba1ab
+    EntryName: Area2Exp
+    ResultOutcome: {fileID: 11400000, guid: aef582edc4420e740bb9dddec0c84e9e, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - 3d0a4297-a72e-4565-80bd-0d6dbc329b2e
+      Ignore: 0
+    - StateGroup: {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - 5b753dc4-ac7d-4ec3-9b82-b3ce47878bf3
+      Ignore: 0
+    IsMatrixExpanded: 1
+  - Guid: ef50c3e2-6d80-481d-85b7-2e9be2dc4099
+    EntryName: Tension
+    ResultOutcome: {fileID: 11400000, guid: 59baab6f236715c46a696fdfefabdde4, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+      SelectedValues: []
+      SelectedGuids: []
+      Ignore: 1
+    - StateGroup: {fileID: 11400000, guid: fa99f46fd22b3af449953bc51b5c9a82, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - 70d7bd68-b057-4a16-bc39-585d54923120
+      Ignore: 0
+    IsMatrixExpanded: 1
+  Folders: []
+  _assetGuid: c948acc4-e2b0-466e-83b0-d4954878839e
+  references:
+    version: 2
+    RefIds: []

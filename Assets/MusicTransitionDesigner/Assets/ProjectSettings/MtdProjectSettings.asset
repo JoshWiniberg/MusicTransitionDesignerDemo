@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642994ab048f0ed4ab3070af8816df82, type: 3}
+  m_Name: MtdProjectSettings
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.MtdProjectSettings
+  BgmMixerChannel: {fileID: -5070039819905733118, guid: ba05d6a2efbb314439ff7ca7032a97a3, type: 2}
+  StingerMixerChannel: {fileID: -947262017482520350, guid: ba05d6a2efbb314439ff7ca7032a97a3, type: 2}
+  _stingerPoolSize: 8
+  UserLatencyOffsetMs: 0
+  PersistentBanksToLoadOnStart: []
+  PauseFadeDurationMs: 250
+  _metronomeBeat1: {fileID: 8300000, guid: fc2914b717d0d3f4895efe9f55aa082c, type: 3}
+  _metronomeOtherBeats: {fileID: 8300000, guid: aea9d82320461ab49b332f803d8a04c7, type: 3}
+  PeriodicStatusLog: 0
+  PeriodicStatusLogIntervalMs: 10000
+  EnableLogging: 1
+  LogVerbosity: 1
+  RootFolderPath: Assets/MusicTransitionDesigner/Assets
+  AudioFilesPath: Assets/MusicTransitionDesigner/Assets/00_AudioFiles
+  MusicTracksPath: Assets/MusicTransitionDesigner/Assets/01_MusicTracks
+  StateGroupsPath: Assets/MusicTransitionDesigner/Assets/02_StateGroups
+  StateTreesPath: Assets/MusicTransitionDesigner/Assets/03_StateTrees
+  StateOutcomesPath: Assets/MusicTransitionDesigner/Assets/04_StateOutcomes
+  TransitionRulesPath: Assets/MusicTransitionDesigner/Assets/05_TransitionRules
+  SoundBanksPath: Assets/MusicTransitionDesigner/Assets/06_SoundBanks
+  PreviewSessionsPath: Assets/MusicTransitionDesigner/Assets/07_PreviewSessions

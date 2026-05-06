@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551af9bd3494aae4badc737da0614675, type: 3}
+  m_Name: SO_CyberpunkTension
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.StateOutcome
+  IsEnabled: 1
+  MusicTrack: {fileID: 11400000, guid: 95ecddab5b49c2845af44114a1636735, type: 2}
+  Category: {fileID: 11400000, guid: 6a33f0b2273cac9478957ba82e3ee97e, type: 2}
+  PlayFrom: 0
+  PlayLeadIn: 1
+  PlayFromMarker: 
+  PlayFromMarkerGuid: 
+  PlayUntil: 0
+  PlayUntilMarker: 
+  PlayUntilMarkerGuid: 
+  Loop: 1
+  LoopTo: 0
+  LoopToMarker: 
+  LoopToMarkerGuid: 
+  PlayTailOnExit: 1
+  UseVolumeOverride: 0
+  VolumeOverrideDb: 0
+  RandomMarkerChoices: []

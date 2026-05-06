@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9217848546635920910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6767265475717594458}
+  - component: {fileID: 6925038271062164054}
+  m_Layer: 0
+  m_Name: MtdSceneInitialiser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6767265475717594458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217848546635920910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6925038271062164054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217848546635920910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41bf05af58349e249b1caabe4d296af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: MusicTransitionDesigner.Authoring::MusicTransitionDesigner.Authoring.MtdSceneInitialiser
+  _persistentSceneBanks:
+  - {fileID: 0}
+  _projectSettings: {fileID: 11400000, guid: d9ac96e7ae0637249aaedd6d26d8e8da, type: 2}
+  _audioSourcePoolPrefab: {fileID: 8019613692970360296, guid: 532369173499522438b1118d8546cabc, type: 3}
+  _initialStateTree: {fileID: 0}
+  _initialStates:
+  - StateGroup: {fileID: 0}
+    StateName: 
+    StateGuid: 
+  _playOnStart: 1

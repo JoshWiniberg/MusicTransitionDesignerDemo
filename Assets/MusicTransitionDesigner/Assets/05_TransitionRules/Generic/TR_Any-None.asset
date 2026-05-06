@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f42161a01a257d49b7e18e710a664e3, type: 3}
+  m_Name: TR_Any-None
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.TransitionRule
+  IsEnabled: 1
+  Direction: 0
+  TrackAType: 2
+  TrackAOutcome: {fileID: 0}
+  TrackACategory: {fileID: 0}
+  TrackBType: 3
+  TrackBOutcome: {fileID: 0}
+  TrackBCategory: {fileID: 0}
+  Settings:
+    SyncPoint: 3
+    TransitionInAmount: 1
+    OnBeatsOfBar_Beats:
+    - 1
+    TransitionMarkerGuids: []
+    RandomMarkerChoices: []
+    PlaybackStartPosition: 0
+    UseLastPlayedPosition: 0
+    PlayLeadIn: 1
+    NewTrackStartMarkerGuid: 
+    Overlay:
+      Enabled: 0
+      OverlayTrack: {fileID: 0}
+      PlayLeadIn: 1
+      PlayTail: 1
+      OverlayCooldownMs: 0
+      UseVolumeOverride: 0
+      VolumeOverrideDb: 0
+      PositionTimingContext: 0
+      FadeTimingContext: 2
+      PositionOffset:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+      FadeInType: 4
+      FadeInDuration:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+      FadeOutType: 4
+      FadeOutDuration:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+    FadeOutType: 4
+    FadeOut:
+      FadeType: 4
+      Duration:
+        Bars: 1
+        Beats: 0
+        Ms: 0
+      Offset:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+    FadeInType: 4
+    FadeIn:
+      FadeType: 4
+      Duration:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+      Offset:
+        Bars: 0
+        Beats: 0
+        Ms: 0
+    PositionTimingContext: 0
+    FadeTimingContext: 1
+    PositionOffset:
+      Bars: 0
+      Beats: 0
+      Ms: 0
+    MinimumPlayDuration:
+      Bars: 0
+      Beats: 0
+      Ms: 0
+    PositionToOverlayExit: 0
+    AllowTransitionReversal: 0
+    InterruptDuringFadeOut: 1
+    InterruptDuringSilence: 1
+    InterruptDuringFadeIn: 0
+    InterruptDuringOverlay: 0
+    ReversalFade:
+      FadeType: 4
+      Duration:
+        Bars: 0
+        Beats: 0
+        Ms: 1000
+      Offset:
+        Bars: 0
+        Beats: 0
+        Ms: 0
