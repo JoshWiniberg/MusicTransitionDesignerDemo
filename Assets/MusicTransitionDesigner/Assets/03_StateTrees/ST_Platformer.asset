@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecbf3ccc2f9418498c7d86493712340, type: 3}
+  m_Name: ST_Platformer
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.StateTree
+  Hierarchy:
+  - {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+  Entries:
+  - Guid: 5a579cef-5bd7-4ea2-a63f-12905557c02b
+    EntryName: Platformer
+    ResultOutcome: {fileID: 11400000, guid: 0d6cfd9408ef4fe4d9b997723dcbab7e, type: 2}
+    Conditions:
+    - StateGroup: {fileID: 11400000, guid: 6e1271cf994c1064a97e27607a1953c7, type: 2}
+      SelectedValues: []
+      SelectedGuids:
+      - f96fc9c1-7694-4f3d-a14c-d6724e3c5bf6
+      Ignore: 0
+    IsMatrixExpanded: 1
+  Folders: []
+  _assetGuid: 9ae7d4b4-55fa-4d0b-9ad7-fff6ee29f468
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026ed22323d5b7d4f949231bd1644809, type: 3}
+  m_Name: SB_Platformer
+  m_EditorClassIdentifier: MusicTransitionDesigner.Runtime::MusicTransitionDesigner.Runtime.SoundBank
+  _sourceStateTrees:
+  - {fileID: 11400000, guid: 837b08c742339a64cbb09474812554c7, type: 2}
+  _sourceMusicTracks: []
+  RulesToCompile: 0
+  SourceTransitionRules: []
+  _compiledTracks:
+  - {fileID: 11400000, guid: b6078fa0bfd55c24482baa976ca4b245, type: 2}
+  _compiledOutcomes:
+  - {fileID: 11400000, guid: 0d6cfd9408ef4fe4d9b997723dcbab7e, type: 2}
+  _compiledTransitionRules:
+  - {fileID: 11400000, guid: 503fac5ac499a8a418cd54d686e53669, type: 2}
+  - {fileID: 11400000, guid: b587631c16ac59f4dbbc11dd53d17369, type: 2}
+  - {fileID: 11400000, guid: 3564938978d354f4aa6aea795d92abbb, type: 2}
+  IsIncomplete: 0

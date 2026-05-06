@@ -29,6 +29,13 @@ MonoBehaviour:
     - 197aca432032c9943abd14ef68b2771d
     - c067806780280a84293648dd216f1742
     SubFolders: []
+  - Name: Platformer
+    Path: 
+    Guid: 5d03eb93-a7fe-4596-9070-d8c9585ea819
+    IsExpanded: 1
+    AssetGuids:
+    - b6078fa0bfd55c24482baa976ca4b245
+    SubFolders: []
   - Name: Stingers
     Path: 
     Guid: 65d56d48-b327-4ce0-81b3-d70392b67b2d
@@ -61,6 +68,13 @@ MonoBehaviour:
     AssetGuids:
     - 80264acf71ef84249836aba7126bc7bf
     - bf4f1f70c818c384db963c278233f195
+    SubFolders: []
+  - Name: Platformer
+    Path: 
+    Guid: ea76d81e-a681-4d21-8747-e37c8c8631b5
+    IsExpanded: 1
+    AssetGuids:
+    - 0d6cfd9408ef4fe4d9b997723dcbab7e
     SubFolders: []
   TransitionRuleFolders:
   - Name: Generic
@@ -105,6 +119,7 @@ MonoBehaviour:
     AssetGuids:
     - e2459d82ffb114945bc337d42f36c6e9
     - 2e7a20e3e327a3e4dbe63fb2252074d7
+    - 59e45bf32eb31474d85bbdafa0ad4008
     SubFolders: []
   StateTreeFolders:
   - Name: StateTrees
@@ -114,6 +129,7 @@ MonoBehaviour:
     AssetGuids:
     - b71a865edd0d7544e9c5c9c421bc867f
     - 5b542ccb0cc67dd4eac9db4bf5683167
+    - 837b08c742339a64cbb09474812554c7
     SubFolders: []
   references:
     version: 2

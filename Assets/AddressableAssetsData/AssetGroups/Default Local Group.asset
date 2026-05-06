@@ -20,6 +20,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b38c5e7966b7664990e0e011bebd0a7
+    m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/Platformer/Josh
+      - Net.Attack() - Pitch 1 (Game Loop Version).wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 538db5d71e36b8c46ba128c0a836e6d7
     m_Address: Assets/MusicTransitionDesigner/Assets/00_AudioFiles/MX_TENSE_80BPM_44_16Bars_4BarTail.wav
     m_ReadOnly: 0

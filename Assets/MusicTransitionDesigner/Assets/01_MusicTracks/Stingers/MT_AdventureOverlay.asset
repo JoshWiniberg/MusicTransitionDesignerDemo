@@ -23,7 +23,7 @@ MonoBehaviour:
   Bpm: 160
   BeatsPerBar: 4
   BeatValueType: 2
-  AllowSubscriptionToBeatDefinition: 1
+  AllowSubscriptionToBeatDefinition: 0
   Markers: []
   EntryPointMs: 375
   ExitPointMs: 375

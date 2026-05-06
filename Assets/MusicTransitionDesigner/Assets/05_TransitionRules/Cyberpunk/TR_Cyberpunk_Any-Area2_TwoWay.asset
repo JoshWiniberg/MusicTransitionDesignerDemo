@@ -60,22 +60,22 @@ MonoBehaviour:
     FadeOut:
       FadeType: 4
       Duration:
-        Bars: 2
+        Bars: 1
         Beats: 0
         Ms: 0
       Offset:
-        Bars: -2
+        Bars: -1
         Beats: 0
         Ms: 0
     FadeInType: 4
     FadeIn:
       FadeType: 4
       Duration:
-        Bars: 2
+        Bars: 1
         Beats: 0
         Ms: 0
       Offset:
-        Bars: -2
+        Bars: -1
         Beats: 0
         Ms: 0
     PositionTimingContext: 0

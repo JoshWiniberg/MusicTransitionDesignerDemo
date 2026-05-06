@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MtdDemo.Player
+namespace MtdDemo
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
