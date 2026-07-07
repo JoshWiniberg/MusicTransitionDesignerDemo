@@ -110,6 +110,7 @@ MonoBehaviour:
     IsExpanded: 1
     AssetGuids:
     - 44964c30839cceb498469158f593b884
+    - 9a063b319bb40c347bdbb002fd12a9b0
     SubFolders: []
   SoundBankFolders:
   - Name: Soundbanks

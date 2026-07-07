@@ -24,7 +24,19 @@ MonoBehaviour:
   BeatsPerBar: 4
   BeatValueType: 2
   AllowSubscriptionToBeatDefinition: 1
-  Markers: []
+  Markers:
+  - Guid: a04f01e6-3fd2-40a8-a0e8-f1af6ec892b6
+    Name: A
+    Bar: 29
+    Beat: 1
+    Ms: 0
+    CachedTime: 44.800000000000004
+  - Guid: 0421c8ee-251f-4568-bc7c-bd8597eb25e7
+    Name: B
+    Bar: 44
+    Beat: 3
+    Ms: 0
+    CachedTime: 69.60000000000001
   EntryPointMs: 0
   ExitPointMs: 102400
   ExitBar: 65

@@ -15,17 +15,17 @@ MonoBehaviour:
   IsEnabled: 1
   MusicTrack: {fileID: 11400000, guid: 197aca432032c9943abd14ef68b2771d, type: 2}
   Category: {fileID: 11400000, guid: 06a82e852f2e68b4b9916b68dc3ebce6, type: 2}
-  PlayFrom: 0
+  PlayFrom: 1
   PlayLeadIn: 1
   PlayFromMarker: 
-  PlayFromMarkerGuid: 
+  PlayFromMarkerGuid: 3135516a-7d43-4720-bf9c-ffb475a04187
   PlayUntil: 0
   PlayUntilMarker: 
   PlayUntilMarkerGuid: 
   Loop: 1
-  LoopTo: 0
+  LoopTo: 1
   LoopToMarker: 
-  LoopToMarkerGuid: 
+  LoopToMarkerGuid: 94aed619-0b1a-4801-9aec-d967790f09cb
   PlayTailOnExit: 1
   UseVolumeOverride: 0
   VolumeOverrideDb: 0

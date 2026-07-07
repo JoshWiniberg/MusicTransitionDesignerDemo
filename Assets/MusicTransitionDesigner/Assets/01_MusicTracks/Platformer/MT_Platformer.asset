@@ -26,10 +26,10 @@ MonoBehaviour:
   AllowSubscriptionToBeatDefinition: 1
   Markers: []
   EntryPointMs: 0
-  ExitPointMs: 108000.03814697266
+  ExitPointMs: 108000
   ExitBar: 73
   ExitBeat: 1
-  ExitMs: 0.03814697266335543
+  ExitMs: 0
   LeadInBars: 0
   LeadInBeats: 0
   LeadInMs: 0
@@ -37,17 +37,17 @@ MonoBehaviour:
   TailBeats: 0
   TailMs: 0
   _cachedEntryTime: 0
-  _cachedExitTime: 108.00003814697266
+  _cachedExitTime: 108
   _cachedLeadInSecs: 0
   _cachedTailSecs: 0
   ClipStartTimeInSeconds: 0
-  ClipEndTimeInSeconds: 108.00003814697266
+  ClipEndTimeInSeconds: 108
   StartBar: 1
   StartBeat: 1
   StartMs: 0
   EndBar: 73
   EndBeat: 1
-  EndMs: 0.03814697266335543
+  EndMs: 0
   LeadInDurationTotalMs: 0
   TailDurationTotalMs: 0
   FadeInBars: 0
@@ -59,6 +59,6 @@ MonoBehaviour:
   FadeOutMs: 0
   FadeOutType: 3
   FadeInEndTime: 0
-  FadeOutStartTime: 108.00003814697266
+  FadeOutStartTime: 108
   _fadeDurationsMigrated: 1
   _assetGuid: 6860b9e9-0e29-432f-9595-436f6a1ae0dc
